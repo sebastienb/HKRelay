@@ -5,7 +5,8 @@ import ServiceManagement
 final class MenuBarHelperController {
     static let shared = MenuBarHelperController()
     private static let registrationLocationKey = "menuBarHelper.registrationLocation"
-    private static let helperName = "HKRelay Menu.app"
+    // ServiceManagement caches this relative bundle path across product renames.
+    private static let helperName = "HomeKit Bridge Menu.app"
 
     private let logger = Logger(
         subsystem: "org.homekitrestbridge.app",

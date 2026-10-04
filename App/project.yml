@@ -88,7 +88,7 @@ targets:
 
   HKRelayMenu:
     type: application
-    productName: HKRelay Menu
+    productName: HomeKit Bridge Menu
     platform: macOS
     deploymentTarget: "14.0"
     configFiles:
@@ -99,6 +99,7 @@ targets:
     info:
       path: ../MenuBarHelper/Resources/Info.plist
       properties:
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         LSApplicationCategoryType: public.app-category.utilities
         LSUIElement: true
     entitlements:
@@ -109,6 +110,8 @@ targets:
     settings:
       base:
         PRODUCT_NAME: HKRelay Menu
+        # Keep the internal path cached by existing ServiceManagement registrations.
+        WRAPPER_NAME: HomeKit Bridge Menu.app
         PRODUCT_BUNDLE_IDENTIFIER: $(HKBRIDGE_BUNDLE_IDENTIFIER).menu
         MARKETING_VERSION: 0.1.0
         CURRENT_PROJECT_VERSION: 2

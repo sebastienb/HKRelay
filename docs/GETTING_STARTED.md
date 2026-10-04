@@ -123,6 +123,6 @@ Grant read-and-write access only when necessary. Never use this prototype for em
 
 The app is now **HKRelay**, the CLI is `hkrelay`, and the source repository is `sebastienb/HKRelay`. Build the app using `App/HKRelay.xcodeproj` and the **HKRelay** scheme. Replace your previous app with `HKRelay.app` in Applications; quit the older copy first so only one server owns port 8765. The MCP and REST URLs and MCP tool names are unchanged.
 
-Keep your existing bundle identifier and developer team in `Local.xcconfig` when upgrading. Internal Keychain, preferences, log-directory, and credential-file identifiers deliberately retain their earlier names so permissions and saved credentials continue to work. If login launch needs approval after moving the app, check **Open at Login** and **Show Menu Bar Item** in Overview.
+Keep your existing bundle identifier and developer team in `Local.xcconfig` when upgrading. Internal Keychain, preferences, log-directory, credential-file identifiers, and the hidden menu-helper bundle filename deliberately retain their earlier names so permissions and saved credentials continue to work. If login launch needs approval after moving the app, check **Open at Login** and **Show Menu Bar Item** in Overview.
 
 Update scripts to call `hkrelay` and install the renamed `hkrelay-cli` or `hkrelay-api` skill. You can optionally keep a local `homekitlink` or `hkbridge` symlink pointing to `hkrelay` for older scripts; the package builds the canonical `hkrelay` executable.

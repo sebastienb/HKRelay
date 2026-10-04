@@ -24,8 +24,8 @@
 		4FF824587655C53572D6B505 /* HomeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3E79DB6FF4F2D6648569BC5 /* HomeKit.framework */; };
 		5DA027420642BE4FD572584C /* BridgeAppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9004F661EE16E572DCF7DAEF /* BridgeAppModel.swift */; };
 		5FFF80E896B8A37F085CAD30 /* MenuBarAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A5B3A0CD3045E983DE9CDE6 /* MenuBarAppDelegate.swift */; };
+		6612699E96C4165D3C15FFBE /* HomeKit Bridge Menu.app in Embed Dependencies */ = {isa = PBXBuildFile; fileRef = 05A80410D9323F669CFA9654 /* HomeKit Bridge Menu.app */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		68EE9B1B6334E1A2A8287A00 /* hkrelay-cli in Resources */ = {isa = PBXBuildFile; fileRef = 884AECD4E3039A27B924BB85 /* hkrelay-cli */; };
-		69E8765AD298329CFDA18C39 /* HKRelay Menu.app in Embed Dependencies */ = {isa = PBXBuildFile; fileRef = 1FA92BF5FAC917CFE4021A3D /* HKRelay Menu.app */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6C032E92280ABB279D783698 /* hkrelay-api in Resources */ = {isa = PBXBuildFile; fileRef = BAFF29FF75CB635EB209DDB4 /* hkrelay-api */; };
 		9347360EFC7EEB58C80CBAC1 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860855A9957993209C70F622 /* RootView.swift */; };
 		993B83279842BE64FC21ACA2 /* MenuBarStatusController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D250D1FF03F2368D381BB9 /* MenuBarStatusController.swift */; };
@@ -57,7 +57,7 @@
 			dstPath = Contents/Library/LoginItems;
 			dstSubfolderSpec = 1;
 			files = (
-				69E8765AD298329CFDA18C39 /* HKRelay Menu.app in Embed Dependencies */,
+				6612699E96C4165D3C15FFBE /* HomeKit Bridge Menu.app in Embed Dependencies */,
 			);
 			name = "Embed Dependencies";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -66,12 +66,12 @@
 
 /* Begin PBXFileReference section */
 		00AED3DCE6A2FCC5167C29B8 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		05A80410D9323F669CFA9654 /* HomeKit Bridge Menu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HomeKit Bridge Menu.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		05EA4163983F2C5F3E4133F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		07F3B881918695F4B41CBFB7 /* HKRelay */ = {isa = PBXFileReference; lastKnownFileType = folder; name = HKRelay; path = ..; sourceTree = SOURCE_ROOT; };
 		0C7834F3E539C2D9F118C006 /* MenuBarHelperController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarHelperController.swift; sourceTree = "<group>"; };
 		14F0F663431347CFBC848F81 /* AccessoryBrowserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessoryBrowserView.swift; sourceTree = "<group>"; };
 		19CD3CCB0357204FA5B47667 /* LaunchAtLoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAtLoginController.swift; sourceTree = "<group>"; };
-		1FA92BF5FAC917CFE4021A3D /* HKRelay Menu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HKRelay Menu.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		23D250D1FF03F2368D381BB9 /* MenuBarStatusController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarStatusController.swift; sourceTree = "<group>"; };
 		2F350830291B3D2DFE072364 /* LocalNetworkAddressProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNetworkAddressProvider.swift; sourceTree = "<group>"; };
 		363662E51E714738376E949F /* APIEndpointRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpointRow.swift; sourceTree = "<group>"; };
@@ -153,8 +153,8 @@
 		641C620278562CFBF6D9E5C8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1FA92BF5FAC917CFE4021A3D /* HKRelay Menu.app */,
 				A1877078F85D77EE58C6E7E2 /* HKRelay.app */,
+				05A80410D9323F669CFA9654 /* HomeKit Bridge Menu.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -259,7 +259,7 @@
 			packageProductDependencies = (
 			);
 			productName = HKRelayMenu;
-			productReference = 1FA92BF5FAC917CFE4021A3D /* HKRelay Menu.app */;
+			productReference = 05A80410D9323F669CFA9654 /* HomeKit Bridge Menu.app */;
 			productType = "com.apple.product-type.application";
 		};
 		F619842F2C2E38D8E8BC1FBF /* HKRelay */ = {
@@ -587,6 +587,7 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 6.0;
+				WRAPPER_NAME = "HomeKit Bridge Menu.app";
 			};
 			name = Release;
 		};
@@ -615,6 +616,7 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 6.0;
+				WRAPPER_NAME = "HomeKit Bridge Menu.app";
 			};
 			name = Debug;
 		};
