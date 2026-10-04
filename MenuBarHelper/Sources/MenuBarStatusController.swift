@@ -98,12 +98,13 @@ final class MenuBarStatusController: NSObject {
     }
 
     private func updateAppearance() {
-        let symbolName = bridgeIsRunning ? "house.fill" : "house"
+        let symbolName = bridgeIsRunning ? "house.badge.wifi.fill" : "house.badge.wifi"
         let description = bridgeIsRunning ? "HKRelay running" : "HKRelay unavailable"
         statusItem.button?.image = NSImage(
             systemSymbolName: symbolName,
             accessibilityDescription: description
         )
+        statusItem.button?.image?.isTemplate = true
         statusMenuItem.title = bridgeIsRunning ? "Bridge Running" : "Bridge Unavailable"
         statusItem.button?.toolTip = description
     }
