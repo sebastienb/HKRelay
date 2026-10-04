@@ -2,11 +2,11 @@
 set -euo pipefail
 
 MODE="${1:-run}"
-APP_NAME="HomeKitLink"
+APP_NAME="HKRelay"
 BUNDLE_ID="org.homekitrestbridge.app"
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-PROJECT="$ROOT_DIR/App/HomeKitRESTBridge.xcodeproj"
+PROJECT="$ROOT_DIR/App/HKRelay.xcodeproj"
 DERIVED_DATA="$ROOT_DIR/.derived-data"
 APP_BUNDLE="$DERIVED_DATA/Build/Products/Debug-maccatalyst/$APP_NAME.app"
 APP_BINARY="$APP_BUNDLE/Contents/MacOS/$APP_NAME"
@@ -20,6 +20,7 @@ if [[ -z "${DEVELOPER_DIR:-}" ]]; then
 fi
 
 pkill -f "/HomeKit REST Bridge.app/Contents/MacOS/HomeKit REST Bridge" >/dev/null 2>&1 || true
+pkill -f "/HomeKitLink.app/Contents/MacOS/HomeKitLink" >/dev/null 2>&1 || true
 pkill -f "/$APP_NAME.app/Contents/MacOS/$APP_NAME" >/dev/null 2>&1 || true
 
 # HomeKit requires a signed build. Use local signing configuration when present;
@@ -31,14 +32,14 @@ fi
 if [[ "${HKBRIDGE_CODE_SIGNING:-$DEFAULT_CODE_SIGNING}" == "YES" ]]; then
   xcodebuild -quiet \
     -project "$PROJECT" \
-    -scheme HomeKitRESTBridge \
+    -scheme HKRelay \
     -destination 'platform=macOS,variant=Mac Catalyst' \
     -derivedDataPath "$DERIVED_DATA" \
     build
 else
   xcodebuild -quiet \
     -project "$PROJECT" \
-    -scheme HomeKitRESTBridge \
+    -scheme HKRelay \
     -destination 'platform=macOS,variant=Mac Catalyst' \
     -derivedDataPath "$DERIVED_DATA" \
     CODE_SIGNING_ALLOWED=NO \

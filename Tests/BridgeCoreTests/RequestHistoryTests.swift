@@ -11,7 +11,7 @@ import Testing
 }
 
 @Test func requestHistoryClassifiesKnownClientsWithoutStoringUserAgent() {
-    #expect(RequestHistorySanitizer.client(userAgent: "homekitlink-cli/0.1.0") == .cli)
+    #expect(RequestHistorySanitizer.client(userAgent: "hkrelay-cli/0.1.0") == .cli)
     #expect(RequestHistorySanitizer.client(userAgent: "hkbridge-cli/0.1.0") == .cli)
     #expect(RequestHistorySanitizer.client(userAgent: "curl/8.7.1") == .curl)
     #expect(RequestHistorySanitizer.client(userAgent: "Mozilla/5.0 private-details") == .browser)

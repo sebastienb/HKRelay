@@ -1,6 +1,6 @@
 ---
-name: homekit-rest-api
-description: Inspect and control user-approved HomeKit accessories through the local HomeKitLink API on this Mac.
+name: hkrelay-api
+description: Inspect and control user-approved HomeKit accessories through the local HKRelay API on this Mac.
 metadata:
   openclaw:
     emoji: "🏠"
@@ -14,9 +14,9 @@ metadata:
     primaryEnv: HKBRIDGE_TOKEN
 ---
 
-# HomeKit REST API
+# HKRelay REST API
 
-Use the REST API at `http://127.0.0.1:8765`. It is available only while the HomeKitLink app is running on this Mac.
+Use the REST API at `http://127.0.0.1:8765`. It is available only while the HKRelay app is running on this Mac.
 
 Authenticate protected requests with `Authorization: Bearer $HKBRIDGE_TOKEN`. Feed the header to `curl` through standard input so the expanded token is not placed in process arguments or a file. Treat that environment variable as a secret: never print it, place it in a URL or command output, or reproduce it in a response. If it is missing or rejected, ask the operator to configure it outside the conversation.
 

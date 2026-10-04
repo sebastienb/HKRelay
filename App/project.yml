@@ -1,4 +1,4 @@
-name: HomeKitRESTBridge
+name: HKRelay
 
 options:
   bundleIdPrefix: org.homekitrestbridge
@@ -11,10 +11,10 @@ packages:
     path: ..
 
 targets:
-  HomeKitRESTBridge:
+  HKRelay:
     type: application
     platform: iOS
-    productName: HomeKitLink
+    productName: HKRelay
     configFiles:
       Debug: Config/Shared.xcconfig
       Release: Config/Shared.xcconfig
@@ -22,10 +22,10 @@ targets:
       - path: Sources
       - path: Resources/Assets.xcassets
       - path: Resources/PrivacyInfo.xcprivacy
-      - path: ../integrations/openclaw/homekit-rest-api
+      - path: ../integrations/openclaw/hkrelay-api
         type: folder
         buildPhase: resources
-      - path: ../integrations/openclaw/homekitlink-cli
+      - path: ../integrations/openclaw/hkrelay-cli
         type: folder
         buildPhase: resources
     info:
@@ -33,9 +33,9 @@ targets:
       properties:
         CFBundleShortVersionString: $(MARKETING_VERSION)
         CFBundleVersion: $(CURRENT_PROJECT_VERSION)
-        NSHomeKitUsageDescription: HomeKitLink reads and controls only the Home accessories you explicitly permit in the app.
-        NSLocalNetworkUsageDescription: HomeKitLink accepts API connections from devices on your local network when you enable local network access.
-        NSHumanReadableCopyright: Copyright © 2026 HomeKitLink contributors. Licensed under MIT.
+        NSHomeKitUsageDescription: HKRelay reads and controls only the Home accessories you explicitly permit in the app.
+        NSLocalNetworkUsageDescription: HKRelay accepts API connections from devices on your local network when you enable local network access.
+        NSHumanReadableCopyright: Copyright © 2026 HKRelay contributors. Licensed under MIT.
         LSApplicationCategoryType: public.app-category.utilities
         ITSAppUsesNonExemptEncryption: false
         NSSupportsAutomaticTermination: false
@@ -47,7 +47,7 @@ targets:
           - UIInterfaceOrientationLandscapeLeft
           - UIInterfaceOrientationLandscapeRight
     entitlements:
-      path: Resources/HomeKitRESTBridge.entitlements
+      path: Resources/HKRelay.entitlements
       properties:
         com.apple.developer.homekit: true
         com.apple.security.app-sandbox: true
@@ -61,7 +61,7 @@ targets:
       - sdk: HomeKit.framework
       - sdk: Security.framework
       - sdk: ServiceManagement.framework
-      - target: HomeKitBridgeMenu
+      - target: HKRelayMenu
         embed: true
         codeSign: true
         copy:
@@ -69,7 +69,7 @@ targets:
           subpath: Contents/Library/LoginItems
     settings:
       base:
-        PRODUCT_NAME: HomeKitLink
+        PRODUCT_NAME: HKRelay
         PRODUCT_BUNDLE_IDENTIFIER: $(HKBRIDGE_BUNDLE_IDENTIFIER)
         MARKETING_VERSION: 0.1.0
         CURRENT_PROJECT_VERSION: 1
@@ -86,8 +86,9 @@ targets:
         Debug:
           SWIFT_ACTIVE_COMPILATION_CONDITIONS: DEBUG
 
-  HomeKitBridgeMenu:
+  HKRelayMenu:
     type: application
+    productName: HKRelay Menu
     platform: macOS
     deploymentTarget: "14.0"
     configFiles:
@@ -101,13 +102,13 @@ targets:
         LSApplicationCategoryType: public.app-category.utilities
         LSUIElement: true
     entitlements:
-      path: ../MenuBarHelper/Resources/HomeKitBridgeMenu.entitlements
+      path: ../MenuBarHelper/Resources/HKRelayMenu.entitlements
       properties:
         com.apple.security.app-sandbox: true
         com.apple.security.network.client: true
     settings:
       base:
-        PRODUCT_NAME: HomeKitLink Menu
+        PRODUCT_NAME: HKRelay Menu
         PRODUCT_BUNDLE_IDENTIFIER: $(HKBRIDGE_BUNDLE_IDENTIFIER).menu
         MARKETING_VERSION: 0.1.0
         CURRENT_PROJECT_VERSION: 1
@@ -120,10 +121,10 @@ targets:
         REGISTER_APP_IN_LAUNCH_SERVICES: NO
 
 schemes:
-  HomeKitRESTBridge:
+  HKRelay:
     build:
       targets:
-        HomeKitRESTBridge: all
+        HKRelay: all
     run:
       config: Debug
     archive:

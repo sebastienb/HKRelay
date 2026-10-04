@@ -18,8 +18,8 @@ struct CredentialStore {
     }
 
     func loadToken() throws -> String? {
-        if let token = environment["HKBRIDGE_TOKEN"], !token.isEmpty {
-            return token
+        for key in ["HKRELAY_TOKEN", "HKBRIDGE_TOKEN"] {
+            if let token = environment[key], !token.isEmpty { return token }
         }
 
         guard fileManager.fileExists(atPath: credentialsURL.path) else {
@@ -48,9 +48,11 @@ struct CredentialStore {
     }
 
     var credentialsURL: URL {
-        if let configuredPath = environment["HKBRIDGE_CONFIG_DIR"], !configuredPath.isEmpty {
-            return URL(fileURLWithPath: configuredPath, isDirectory: true)
-                .appendingPathComponent("credentials.json", isDirectory: false)
+        for key in ["HKRELAY_CONFIG_DIR", "HKBRIDGE_CONFIG_DIR"] {
+            if let configuredPath = environment[key], !configuredPath.isEmpty {
+                return URL(fileURLWithPath: configuredPath, isDirectory: true)
+                    .appendingPathComponent("credentials.json", isDirectory: false)
+            }
         }
 
         return fileManager.homeDirectoryForCurrentUser

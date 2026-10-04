@@ -1,7 +1,7 @@
 import SwiftUI
 
 @main
-struct HomeKitRESTBridgeApp: App {
+struct HKRelayApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
     @State private var model = BridgeAppModel()
 

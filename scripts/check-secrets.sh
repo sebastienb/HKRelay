@@ -16,10 +16,10 @@ if sys.argv[1:] and not history:
 
 patterns = {
     'absolute macOS user path': r'/Users/[^/\s]+',
-    'Apple development-team identifier': r'(?:HKBRIDGE_)?DEVELOPMENT_TEAM\s*=\s*[A-Z0-9]{10}',
+    'Apple development-team identifier': r'(?:HKBRIDGE_|HKRELAY_)?DEVELOPMENT_TEAM\s*=\s*[A-Z0-9]{10}',
     'private key material': r'BEGIN (?:RSA |EC |OPENSSH |ENCRYPTED )?PRIVATE KEY',
     'hard-coded bearer token': r'Bearer\s+[A-Za-z0-9_-]{24,}',
-    'hard-coded bridge token': r'HKBRIDGE_TOKEN\s*=\s*[A-Za-z0-9_-]{16,}',
+    'hard-coded bridge token': r'(?:HKBRIDGE|HKRELAY)_TOKEN\s*=\s*[A-Za-z0-9_-]{16,}',
     'common secret assignment': r'''(?i)(?:api[_-]?key|client[_-]?secret|access[_-]?token|password)\s*[:=]\s*['"]?[A-Za-z0-9_./+-]{16,}''',
     'GitHub credential': r'(?:gh[pousr]_[A-Za-z0-9]{30,}|github_pat_[A-Za-z0-9_]{40,})',
     'AWS access key': r'(?:AKIA|ASIA)[A-Z0-9]{16}',

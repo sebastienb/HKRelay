@@ -1,0 +1,672 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		002515F05C43679259CB352F /* RequestHistoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E038EC92BEDE66D8D561F095 /* RequestHistoryStore.swift */; };
+		00D19203771787D802CDB9C9 /* PolicyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00D40A25740CEDB3617040F /* PolicyStore.swift */; };
+		054065CFFAEFF50A517EDA71 /* LocalNetworkAddressProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F350830291B3D2DFE072364 /* LocalNetworkAddressProvider.swift */; };
+		0A5466499498E09A29263FD5 /* APIEndpointRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363662E51E714738376E949F /* APIEndpointRow.swift */; };
+		1AFAC78C9DFBE5EA06A6296F /* HKRelayApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D22EC9FAEE1A92B9A512F00 /* HKRelayApp.swift */; };
+		1C7D7877CCCF4A733BBCB045 /* MenuBarHelperController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7834F3E539C2D9F118C006 /* MenuBarHelperController.swift */; };
+		1F992F52CCE70F0B02F6520C /* CatalystWindowSizeConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618F96B0DB5247E13832FCD7 /* CatalystWindowSizeConfigurator.swift */; };
+		217ACA7C12F258B52E64F92A /* TokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921665EE98A61C9F9F3721EA /* TokenStore.swift */; };
+		228D2049173F157AC54B3044 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = B4A0E9773C320ACAF731AC01 /* PrivacyInfo.xcprivacy */; };
+		22CDC6F5AD95D64BED71EAEF /* AccessoryBrowserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F0F663431347CFBC848F81 /* AccessoryBrowserView.swift */; };
+		26B372E87254885369A35387 /* BridgePages.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF494824ACCF43A36B514E6D /* BridgePages.swift */; };
+		382FE5564DE5B2FA065395C4 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AED3DCE6A2FCC5167C29B8 /* main.swift */; };
+		3B6A7ADE89426DDCDD158B60 /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 370DA847607348133FD96FBB /* ServiceManagement.framework */; };
+		3E3A49C1EBA8CDC49F56FC95 /* SkillDocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A903FCEF9F1D4ABFBFAFDA33 /* SkillDocumentView.swift */; };
+		4FF824587655C53572D6B505 /* HomeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3E79DB6FF4F2D6648569BC5 /* HomeKit.framework */; };
+		5DA027420642BE4FD572584C /* BridgeAppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9004F661EE16E572DCF7DAEF /* BridgeAppModel.swift */; };
+		5FFF80E896B8A37F085CAD30 /* MenuBarAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A5B3A0CD3045E983DE9CDE6 /* MenuBarAppDelegate.swift */; };
+		68EE9B1B6334E1A2A8287A00 /* hkrelay-cli in Resources */ = {isa = PBXBuildFile; fileRef = 884AECD4E3039A27B924BB85 /* hkrelay-cli */; };
+		69E8765AD298329CFDA18C39 /* HKRelay Menu.app in Embed Dependencies */ = {isa = PBXBuildFile; fileRef = 1FA92BF5FAC917CFE4021A3D /* HKRelay Menu.app */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6C032E92280ABB279D783698 /* hkrelay-api in Resources */ = {isa = PBXBuildFile; fileRef = BAFF29FF75CB635EB209DDB4 /* hkrelay-api */; };
+		9347360EFC7EEB58C80CBAC1 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860855A9957993209C70F622 /* RootView.swift */; };
+		993B83279842BE64FC21ACA2 /* MenuBarStatusController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D250D1FF03F2368D381BB9 /* MenuBarStatusController.swift */; };
+		A7F7EBCFBC3CD404CE66A60B /* LaunchAtLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CD3CCB0357204FA5B47667 /* LaunchAtLoginController.swift */; };
+		B619CA6FB6FA66D054FE8224 /* BridgeCore in Frameworks */ = {isa = PBXBuildFile; productRef = FDCE014D6E516851C6E8D04B /* BridgeCore */; };
+		C9987E829BE928B8F4647CBB /* HomeKitRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6376F1D38E7E71413484F901 /* HomeKitRepository.swift */; };
+		DB4C13AFF164A57D5646A96C /* HistoryPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447F22512713556AE9118D23 /* HistoryPage.swift */; };
+		DFB9A56B85E7DF29DD418337 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B3B1ACC1AA8555315C94BAC /* Security.framework */; };
+		E8A2FDC35809005E6B22CA26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EA4163983F2C5F3E4133F4 /* AppDelegate.swift */; };
+		F4942EA5FBE98F0EE273C4D2 /* BridgeServer in Frameworks */ = {isa = PBXBuildFile; productRef = 57506FCC35CD883B417CE0A7 /* BridgeServer */; };
+		FC9044DC1A25FB65E0D57D99 /* BridgeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A06133116FBD9132B863AF8 /* BridgeRouter.swift */; };
+		FDFC6E6C8915AE028FD5E83B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 68C668CAAB76066AEA168082 /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9627A9F01062D26DB9FB48DD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DA6B08C4DF69175CD37FBA40 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D9EE27E16C6AE2F51C96F3C9;
+			remoteInfo = HKRelayMenu;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		543DAFCE87F9E69CA3BC2381 /* Embed Dependencies */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/Library/LoginItems;
+			dstSubfolderSpec = 1;
+			files = (
+				69E8765AD298329CFDA18C39 /* HKRelay Menu.app in Embed Dependencies */,
+			);
+			name = "Embed Dependencies";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		00AED3DCE6A2FCC5167C29B8 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		05EA4163983F2C5F3E4133F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		07F3B881918695F4B41CBFB7 /* HKRelay */ = {isa = PBXFileReference; lastKnownFileType = folder; name = HKRelay; path = ..; sourceTree = SOURCE_ROOT; };
+		0C7834F3E539C2D9F118C006 /* MenuBarHelperController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarHelperController.swift; sourceTree = "<group>"; };
+		14F0F663431347CFBC848F81 /* AccessoryBrowserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessoryBrowserView.swift; sourceTree = "<group>"; };
+		19CD3CCB0357204FA5B47667 /* LaunchAtLoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAtLoginController.swift; sourceTree = "<group>"; };
+		1FA92BF5FAC917CFE4021A3D /* HKRelay Menu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HKRelay Menu.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		23D250D1FF03F2368D381BB9 /* MenuBarStatusController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarStatusController.swift; sourceTree = "<group>"; };
+		2F350830291B3D2DFE072364 /* LocalNetworkAddressProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNetworkAddressProvider.swift; sourceTree = "<group>"; };
+		363662E51E714738376E949F /* APIEndpointRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpointRow.swift; sourceTree = "<group>"; };
+		370DA847607348133FD96FBB /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
+		3A06133116FBD9132B863AF8 /* BridgeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeRouter.swift; sourceTree = "<group>"; };
+		447F22512713556AE9118D23 /* HistoryPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryPage.swift; sourceTree = "<group>"; };
+		4D22EC9FAEE1A92B9A512F00 /* HKRelayApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKRelayApp.swift; sourceTree = "<group>"; };
+		618F96B0DB5247E13832FCD7 /* CatalystWindowSizeConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalystWindowSizeConfigurator.swift; sourceTree = "<group>"; };
+		6376F1D38E7E71413484F901 /* HomeKitRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeKitRepository.swift; sourceTree = "<group>"; };
+		68C668CAAB76066AEA168082 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6A5B3A0CD3045E983DE9CDE6 /* MenuBarAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarAppDelegate.swift; sourceTree = "<group>"; };
+		7B3B1ACC1AA8555315C94BAC /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		860855A9957993209C70F622 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		884AECD4E3039A27B924BB85 /* hkrelay-cli */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "hkrelay-cli"; path = "../integrations/openclaw/hkrelay-cli"; sourceTree = SOURCE_ROOT; };
+		9004F661EE16E572DCF7DAEF /* BridgeAppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeAppModel.swift; sourceTree = "<group>"; };
+		921665EE98A61C9F9F3721EA /* TokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenStore.swift; sourceTree = "<group>"; };
+		A1877078F85D77EE58C6E7E2 /* HKRelay.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = HKRelay.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A903FCEF9F1D4ABFBFAFDA33 /* SkillDocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillDocumentView.swift; sourceTree = "<group>"; };
+		B14C51AC21B0ECDED3198D64 /* Shared.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Shared.xcconfig; sourceTree = "<group>"; };
+		B3E79DB6FF4F2D6648569BC5 /* HomeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HomeKit.framework; path = System/Library/Frameworks/HomeKit.framework; sourceTree = SDKROOT; };
+		B4A0E9773C320ACAF731AC01 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		BAFF29FF75CB635EB209DDB4 /* hkrelay-api */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "hkrelay-api"; path = "../integrations/openclaw/hkrelay-api"; sourceTree = SOURCE_ROOT; };
+		E038EC92BEDE66D8D561F095 /* RequestHistoryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHistoryStore.swift; sourceTree = "<group>"; };
+		EF494824ACCF43A36B514E6D /* BridgePages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgePages.swift; sourceTree = "<group>"; };
+		F00D40A25740CEDB3617040F /* PolicyStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyStore.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		568840D945CC230E74719713 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B619CA6FB6FA66D054FE8224 /* BridgeCore in Frameworks */,
+				F4942EA5FBE98F0EE273C4D2 /* BridgeServer in Frameworks */,
+				4FF824587655C53572D6B505 /* HomeKit.framework in Frameworks */,
+				DFB9A56B85E7DF29DD418337 /* Security.framework in Frameworks */,
+				3B6A7ADE89426DDCDD158B60 /* ServiceManagement.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		318C25593AF6F5FCBA614464 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				00AED3DCE6A2FCC5167C29B8 /* main.swift */,
+				6A5B3A0CD3045E983DE9CDE6 /* MenuBarAppDelegate.swift */,
+				23D250D1FF03F2368D381BB9 /* MenuBarStatusController.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		358C60ABE2E40F3B123306BF /* MenuBarHelper */ = {
+			isa = PBXGroup;
+			children = (
+				318C25593AF6F5FCBA614464 /* Sources */,
+			);
+			path = MenuBarHelper;
+			sourceTree = "<group>";
+		};
+		39218FF35E032139ACFAB9AF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				68C668CAAB76066AEA168082 /* Assets.xcassets */,
+				B4A0E9773C320ACAF731AC01 /* PrivacyInfo.xcprivacy */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		5547CA0178AD63B7F80E9D7F /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				B14C51AC21B0ECDED3198D64 /* Shared.xcconfig */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		641C620278562CFBF6D9E5C8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1FA92BF5FAC917CFE4021A3D /* HKRelay Menu.app */,
+				A1877078F85D77EE58C6E7E2 /* HKRelay.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7CF9662035C492C06CA18C3C /* HKRelay */ = {
+			isa = PBXGroup;
+			children = (
+				9331FD58FF9421B6E46BACB8 /* integrations */,
+				358C60ABE2E40F3B123306BF /* MenuBarHelper */,
+			);
+			name = HKRelay;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		7F8F566160BFE2B4440A1332 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				14F0F663431347CFBC848F81 /* AccessoryBrowserView.swift */,
+				363662E51E714738376E949F /* APIEndpointRow.swift */,
+				05EA4163983F2C5F3E4133F4 /* AppDelegate.swift */,
+				9004F661EE16E572DCF7DAEF /* BridgeAppModel.swift */,
+				EF494824ACCF43A36B514E6D /* BridgePages.swift */,
+				3A06133116FBD9132B863AF8 /* BridgeRouter.swift */,
+				618F96B0DB5247E13832FCD7 /* CatalystWindowSizeConfigurator.swift */,
+				447F22512713556AE9118D23 /* HistoryPage.swift */,
+				4D22EC9FAEE1A92B9A512F00 /* HKRelayApp.swift */,
+				6376F1D38E7E71413484F901 /* HomeKitRepository.swift */,
+				19CD3CCB0357204FA5B47667 /* LaunchAtLoginController.swift */,
+				2F350830291B3D2DFE072364 /* LocalNetworkAddressProvider.swift */,
+				0C7834F3E539C2D9F118C006 /* MenuBarHelperController.swift */,
+				F00D40A25740CEDB3617040F /* PolicyStore.swift */,
+				E038EC92BEDE66D8D561F095 /* RequestHistoryStore.swift */,
+				860855A9957993209C70F622 /* RootView.swift */,
+				A903FCEF9F1D4ABFBFAFDA33 /* SkillDocumentView.swift */,
+				921665EE98A61C9F9F3721EA /* TokenStore.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		9331FD58FF9421B6E46BACB8 /* integrations */ = {
+			isa = PBXGroup;
+			children = (
+				C4ED480E99D4251EB77AB45A /* openclaw */,
+			);
+			path = integrations;
+			sourceTree = "<group>";
+		};
+		AB15B54BAD72191DF4373962 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				07F3B881918695F4B41CBFB7 /* HKRelay */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		C4ED480E99D4251EB77AB45A /* openclaw */ = {
+			isa = PBXGroup;
+			children = (
+				BAFF29FF75CB635EB209DDB4 /* hkrelay-api */,
+				884AECD4E3039A27B924BB85 /* hkrelay-cli */,
+			);
+			path = openclaw;
+			sourceTree = "<group>";
+		};
+		E8F47B149598762AEC0869A3 = {
+			isa = PBXGroup;
+			children = (
+				5547CA0178AD63B7F80E9D7F /* Config */,
+				7CF9662035C492C06CA18C3C /* HKRelay */,
+				AB15B54BAD72191DF4373962 /* Packages */,
+				39218FF35E032139ACFAB9AF /* Resources */,
+				7F8F566160BFE2B4440A1332 /* Sources */,
+				F879CBBD745ABFB0C5AFA582 /* Frameworks */,
+				641C620278562CFBF6D9E5C8 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F879CBBD745ABFB0C5AFA582 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B3E79DB6FF4F2D6648569BC5 /* HomeKit.framework */,
+				7B3B1ACC1AA8555315C94BAC /* Security.framework */,
+				370DA847607348133FD96FBB /* ServiceManagement.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D9EE27E16C6AE2F51C96F3C9 /* HKRelayMenu */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5A032058D33A794B1BA0AEE4 /* Build configuration list for PBXNativeTarget "HKRelayMenu" */;
+			buildPhases = (
+				09203340F0EABF7C3363487A /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HKRelayMenu;
+			packageProductDependencies = (
+			);
+			productName = HKRelayMenu;
+			productReference = 1FA92BF5FAC917CFE4021A3D /* HKRelay Menu.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F619842F2C2E38D8E8BC1FBF /* HKRelay */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6D2C41CD81F37B68E6E3B56B /* Build configuration list for PBXNativeTarget "HKRelay" */;
+			buildPhases = (
+				7A7018E8BEEF11E3DD526963 /* Sources */,
+				4474F672E291C30EB967C1BF /* Resources */,
+				568840D945CC230E74719713 /* Frameworks */,
+				543DAFCE87F9E69CA3BC2381 /* Embed Dependencies */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F6D0D2528C505A898D3AAC9C /* PBXTargetDependency */,
+			);
+			name = HKRelay;
+			packageProductDependencies = (
+				FDCE014D6E516851C6E8D04B /* BridgeCore */,
+				57506FCC35CD883B417CE0A7 /* BridgeServer */,
+			);
+			productName = HKRelay;
+			productReference = A1877078F85D77EE58C6E7E2 /* HKRelay.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DA6B08C4DF69175CD37FBA40 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					D9EE27E16C6AE2F51C96F3C9 = {
+						DevelopmentTeam = "$(HKBRIDGE_DEVELOPMENT_TEAM)";
+						ProvisioningStyle = Automatic;
+					};
+					F619842F2C2E38D8E8BC1FBF = {
+						DevelopmentTeam = "$(HKBRIDGE_DEVELOPMENT_TEAM)";
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 3AE68439E5015471D5B28E2D /* Build configuration list for PBXProject "HKRelay" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = E8F47B149598762AEC0869A3;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				7B9D66040AC90B1F1A764F81 /* XCLocalSwiftPackageReference ".." */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 641C620278562CFBF6D9E5C8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F619842F2C2E38D8E8BC1FBF /* HKRelay */,
+				D9EE27E16C6AE2F51C96F3C9 /* HKRelayMenu */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4474F672E291C30EB967C1BF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FDFC6E6C8915AE028FD5E83B /* Assets.xcassets in Resources */,
+				228D2049173F157AC54B3044 /* PrivacyInfo.xcprivacy in Resources */,
+				6C032E92280ABB279D783698 /* hkrelay-api in Resources */,
+				68EE9B1B6334E1A2A8287A00 /* hkrelay-cli in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		09203340F0EABF7C3363487A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5FFF80E896B8A37F085CAD30 /* MenuBarAppDelegate.swift in Sources */,
+				993B83279842BE64FC21ACA2 /* MenuBarStatusController.swift in Sources */,
+				382FE5564DE5B2FA065395C4 /* main.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7A7018E8BEEF11E3DD526963 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A5466499498E09A29263FD5 /* APIEndpointRow.swift in Sources */,
+				22CDC6F5AD95D64BED71EAEF /* AccessoryBrowserView.swift in Sources */,
+				E8A2FDC35809005E6B22CA26 /* AppDelegate.swift in Sources */,
+				5DA027420642BE4FD572584C /* BridgeAppModel.swift in Sources */,
+				26B372E87254885369A35387 /* BridgePages.swift in Sources */,
+				FC9044DC1A25FB65E0D57D99 /* BridgeRouter.swift in Sources */,
+				1F992F52CCE70F0B02F6520C /* CatalystWindowSizeConfigurator.swift in Sources */,
+				1AFAC78C9DFBE5EA06A6296F /* HKRelayApp.swift in Sources */,
+				DB4C13AFF164A57D5646A96C /* HistoryPage.swift in Sources */,
+				C9987E829BE928B8F4647CBB /* HomeKitRepository.swift in Sources */,
+				A7F7EBCFBC3CD404CE66A60B /* LaunchAtLoginController.swift in Sources */,
+				054065CFFAEFF50A517EDA71 /* LocalNetworkAddressProvider.swift in Sources */,
+				1C7D7877CCCF4A733BBCB045 /* MenuBarHelperController.swift in Sources */,
+				00D19203771787D802CDB9C9 /* PolicyStore.swift in Sources */,
+				002515F05C43679259CB352F /* RequestHistoryStore.swift in Sources */,
+				9347360EFC7EEB58C80CBAC1 /* RootView.swift in Sources */,
+				3E3A49C1EBA8CDC49F56FC95 /* SkillDocumentView.swift in Sources */,
+				217ACA7C12F258B52E64F92A /* TokenStore.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F6D0D2528C505A898D3AAC9C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D9EE27E16C6AE2F51C96F3C9 /* HKRelayMenu */;
+			targetProxy = 9627A9F01062D26DB9FB48DD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		3E95AC4304EF7ABF9462C333 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B14C51AC21B0ECDED3198D64 /* Shared.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Resources/HKRelay.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "$(HKBRIDGE_DEVELOPMENT_TEAM)";
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(HKBRIDGE_BUNDLE_IDENTIFIER)";
+				PRODUCT_NAME = HKRelay;
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = YES;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		5DE5D52EA8F0CC23607D5162 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B14C51AC21B0ECDED3198D64 /* Shared.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Resources/HKRelay.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "$(HKBRIDGE_DEVELOPMENT_TEAM)";
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(HKBRIDGE_BUNDLE_IDENTIFIER)";
+				PRODUCT_NAME = HKRelay;
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A72FAEA71081231C243A7363 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		A7A628C6A9B7D4BDC44EF71C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		C1996433DA7A4343C5FB3493 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B14C51AC21B0ECDED3198D64 /* Shared.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ../MenuBarHelper/Resources/HKRelayMenu.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "$(HKBRIDGE_DEVELOPMENT_TEAM)";
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = ../MenuBarHelper/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(HKBRIDGE_BUNDLE_IDENTIFIER).menu";
+				PRODUCT_NAME = "HKRelay Menu";
+				REGISTER_APP_IN_LAUNCH_SERVICES = NO;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+		E856E8AA5FB7F2A5865BD26C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B14C51AC21B0ECDED3198D64 /* Shared.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ../MenuBarHelper/Resources/HKRelayMenu.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "$(HKBRIDGE_DEVELOPMENT_TEAM)";
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = ../MenuBarHelper/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(HKBRIDGE_BUNDLE_IDENTIFIER).menu";
+				PRODUCT_NAME = "HKRelay Menu";
+				REGISTER_APP_IN_LAUNCH_SERVICES = NO;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3AE68439E5015471D5B28E2D /* Build configuration list for PBXProject "HKRelay" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A72FAEA71081231C243A7363 /* Debug */,
+				A7A628C6A9B7D4BDC44EF71C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		5A032058D33A794B1BA0AEE4 /* Build configuration list for PBXNativeTarget "HKRelayMenu" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E856E8AA5FB7F2A5865BD26C /* Debug */,
+				C1996433DA7A4343C5FB3493 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		6D2C41CD81F37B68E6E3B56B /* Build configuration list for PBXNativeTarget "HKRelay" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5DE5D52EA8F0CC23607D5162 /* Debug */,
+				3E95AC4304EF7ABF9462C333 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		7B9D66040AC90B1F1A764F81 /* XCLocalSwiftPackageReference ".." */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ..;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		57506FCC35CD883B417CE0A7 /* BridgeServer */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = BridgeServer;
+		};
+		FDCE014D6E516851C6E8D04B /* BridgeCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = BridgeCore;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = DA6B08C4DF69175CD37FBA40 /* Project object */;
+}

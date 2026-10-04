@@ -89,7 +89,7 @@ struct HistoryPage: View {
                 }
             }
 
-            Text("Use this bearer token for REST, MCP, and homekitlink clients. Keep it out of source code, URLs, screenshots, and logs.")
+            Text("Use this bearer token for REST, MCP, and hkrelay clients. Keep it out of source code, URLs, screenshots, and logs.")
                 .font(.caption)
                 .foregroundStyle(.secondary)
 

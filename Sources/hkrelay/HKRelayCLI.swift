@@ -3,7 +3,7 @@ import Darwin
 import Foundation
 
 @main
-struct HomeKitLinkCLI {
+struct HKRelayCLI {
     private static let version = "0.1.0"
 
     static func main() async {
@@ -29,7 +29,7 @@ struct HomeKitLinkCLI {
     private static func run(arguments: [String]) async throws -> Data {
         if arguments.isEmpty || arguments == ["help"] || arguments == ["--help"] {
             return try encoded(.success(.object([
-                "name": .string("homekitlink"),
+                "name": .string("hkrelay"),
                 "version": .string(version),
                 "commands": .array(helpCommands.map(JSONValue.string))
             ])))
@@ -43,7 +43,7 @@ struct HomeKitLinkCLI {
             guard arguments.count == 2 else {
                 throw CLIError(
                     code: "invalid_arguments",
-                    message: "Usage: printf '%s' TOKEN | homekitlink config set-token"
+                    message: "Usage: printf '%s' TOKEN | hkrelay config set-token"
                 )
             }
 
@@ -99,17 +99,17 @@ struct HomeKitLinkCLI {
             )
         }
 
-        throw CLIError(code: "unknown_command", message: "Run 'homekitlink help' for valid commands.")
+        throw CLIError(code: "unknown_command", message: "Run 'hkrelay help' for valid commands.")
     }
 
     private static let helpCommands = [
-        "homekitlink status",
-        "homekitlink accessories list",
-        "homekitlink accessories get ACCESSORY_ID",
-        "homekitlink read ACCESSORY_ID CHARACTERISTIC_ID",
-        "homekitlink camera motion ACCESSORY_ID",
-        "homekitlink write ACCESSORY_ID CHARACTERISTIC_ID JSON_VALUE --yes",
-        "homekitlink config set-token"
+        "hkrelay status",
+        "hkrelay accessories list",
+        "hkrelay accessories get ACCESSORY_ID",
+        "hkrelay read ACCESSORY_ID CHARACTERISTIC_ID",
+        "hkrelay camera motion ACCESSORY_ID",
+        "hkrelay write ACCESSORY_ID CHARACTERISTIC_ID JSON_VALUE --yes",
+        "hkrelay config set-token"
     ]
 
     private static func readToken() throws -> String {

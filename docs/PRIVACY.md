@@ -1,6 +1,6 @@
 # Privacy
 
-HomeKitLink is a local, experimental app. It contains no advertising, analytics, remote error reporting, developer-operated backend, or automatic upload of HomeKit information.
+HKRelay is a local, experimental app. It contains no advertising, analytics, remote error reporting, developer-operated backend, or automatic upload of HomeKit information.
 
 ## On this Mac
 

@@ -3,7 +3,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "HomeKitLink",
+    name: "HKRelay",
     platforms: [
         .macOS(.v14),
         .iOS(.v17)
@@ -11,7 +11,7 @@ let package = Package(
     products: [
         .library(name: "BridgeCore", targets: ["BridgeCore"]),
         .library(name: "BridgeServer", targets: ["BridgeServer"]),
-        .executable(name: "homekitlink", targets: ["homekitlink"])
+        .executable(name: "hkrelay", targets: ["hkrelay"])
     ],
     targets: [
         .target(name: "BridgeCore"),
@@ -20,7 +20,7 @@ let package = Package(
             dependencies: ["BridgeCore"]
         ),
         .executableTarget(
-            name: "homekitlink",
+            name: "hkrelay",
             dependencies: ["BridgeCore"]
         ),
         .testTarget(

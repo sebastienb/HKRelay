@@ -42,7 +42,7 @@ Working-tree and reachable-history scanners check common credential formats, pri
 
 ## Remaining constraints
 
-The name HomeKitLink includes Apple's HomeKit mark. Apple's trademark guidelines restrict incorporating its marks into product names. This is an unresolved naming concern, separate from technical security; consider an independent name before wider promotion. The source license does not provide trademark permission. See [Distribution](DISTRIBUTION.md#product-name) for the primary references and limits of this assessment.
+The app and repository were subsequently renamed HKRelay to address the concern about incorporating Apple's HomeKit mark directly into the former product name. This is not trademark clearance. See [Distribution](DISTRIBUTION.md#product-name) for the primary references and limits of this assessment.
 
 
 LAN HTTP is unencrypted and experimental; authentication does not protect against network interception. The supported local workflow is loopback with a local client. The project supplies no TLS, public hosting, OAuth, cloud forwarding, or automatic secure-remote deployment.

@@ -1,6 +1,6 @@
 # Getting Started
 
-HomeKitLink accepts API requests from the same Mac by default. Local-network access is available as an opt-in setting for clients on other devices.
+HKRelay accepts API requests from the same Mac by default. Local-network access is available as an opt-in setting for clients on other devices.
 
 ## Before you begin
 
@@ -12,7 +12,7 @@ If you are building the app from source for testing, you also need Xcode with Sw
 
 ## First launch
 
-1. Open **HomeKitLink**.
+1. Open **HKRelay**.
 2. Approve Home access when macOS asks.
 3. In **Overview**, wait for **Home data** to show that accessories are loaded.
 4. Open **Accessories** and select one non-critical accessory.
@@ -26,14 +26,14 @@ Open the app's **CLI** tab and copy the bridge token. In Terminal, read it into 
 
 ```sh
 printf 'Bridge token: '
-read -rs HKBRIDGE_TOKEN
+read -rs HKRELAY_TOKEN
 printf '\n'
 ```
 
 Check the bridge status:
 
 ```sh
-printf 'header = "Authorization: Bearer %s"\n' "$HKBRIDGE_TOKEN" | \
+printf 'header = "Authorization: Bearer %s"\n' "$HKRELAY_TOKEN" | \
   curl --silent --show-error --config - \
   http://127.0.0.1:8765/v1/status
 ```
@@ -41,7 +41,7 @@ printf 'header = "Authorization: Bearer %s"\n' "$HKBRIDGE_TOKEN" | \
 List the accessories you allowed:
 
 ```sh
-printf 'header = "Authorization: Bearer %s"\n' "$HKBRIDGE_TOKEN" | \
+printf 'header = "Authorization: Bearer %s"\n' "$HKRELAY_TOKEN" | \
   curl --silent --show-error --config - \
   http://127.0.0.1:8765/v1/accessories
 ```
@@ -51,7 +51,7 @@ Both responses are JSON. A successful response contains `"ok": true`.
 When finished, remove the temporary token from the shell:
 
 ```sh
-unset HKBRIDGE_TOKEN
+unset HKRELAY_TOKEN
 ```
 
 ## Experimental connection from another device
@@ -66,19 +66,19 @@ Both devices must be on a network that permits peer-to-peer traffic. The API use
 
 ## Optional command-line client
 
-The `homekitlink` client wraps the same loopback API and emits stable JSON. A source checkout can build it with:
+The `hkrelay` client wraps the same loopback API and emits stable JSON. A source checkout can build it with:
 
 ```sh
-swift build -c release --product homekitlink
+swift build -c release --product hkrelay
 ```
 
 The CLI is built locally from source; this repository does not provide an approved end-user binary package.
 
 ### CLI credentials
 
-Run `homekitlink config set-token` and enter the token at the private prompt. The CLI stores it in `~/.config/hkbridge/credentials.json` with user-only permissions. This location is retained for compatibility with earlier versions; existing credentials continue to work after the CLI rename.
+Run `hkrelay config set-token` and enter the token at the private prompt. The CLI stores it in `~/.config/hkbridge/credentials.json` with user-only permissions. This location is retained for compatibility with earlier versions; existing credentials continue to work after the CLI rename.
 
-For ephemeral automation, the CLI also accepts `HKBRIDGE_TOKEN` from the process environment. `HKBRIDGE_CONFIG_DIR` overrides the directory used for the credential file. These configuration names remain supported for existing setups. Keep tokens out of command arguments, repositories, prompts, issues, screenshots, and logs.
+For ephemeral automation, the CLI also accepts `HKRELAY_TOKEN` from the process environment. `HKRELAY_CONFIG_DIR` overrides the directory used for the credential file. The legacy `HKBRIDGE_TOKEN` and `HKBRIDGE_CONFIG_DIR` names remain supported; the corresponding `HKRELAY_` setting takes precedence when both are set. Keep tokens out of command arguments, repositories, prompts, issues, screenshots, and logs.
 
 ## Background operation
 
@@ -93,7 +93,7 @@ Quit the app to stop the API server.
 
 ### Home access is not allowed
 
-Open **System Settings > Privacy & Security > Home**, allow access for HomeKitLink, then use **Check Again** in the Accessories screen.
+Open **System Settings > Privacy & Security > Home**, allow access for HKRelay, then use **Check Again** in the Accessories screen.
 
 ### Home data stays empty
 
@@ -118,3 +118,11 @@ Open **System Settings > General > Login Items** and approve the helper. The Ove
 ## Safety
 
 Grant read-and-write access only when necessary. Never use this prototype for emergency, medical, life-safety, or unattended security operations.
+
+## Upgrading from an earlier name
+
+The app is now **HKRelay**, the CLI is `hkrelay`, and the source repository is `sebastienb/HKRelay`. Build the app using `App/HKRelay.xcodeproj` and the **HKRelay** scheme. Replace your previous app with `HKRelay.app` in Applications; quit the older copy first so only one server owns port 8765. The MCP and REST URLs and MCP tool names are unchanged.
+
+Keep your existing bundle identifier and developer team in `Local.xcconfig` when upgrading. Internal Keychain, preferences, log-directory, and credential-file identifiers deliberately retain their earlier names so permissions and saved credentials continue to work. If login launch needs approval after moving the app, check **Open at Login** and **Show Menu Bar Item** in Overview.
+
+Update scripts to call `hkrelay` and install the renamed `hkrelay-cli` or `hkrelay-api` skill. You can optionally keep a local `homekitlink` or `hkbridge` symlink pointing to `hkrelay` for older scripts; the package builds the canonical `hkrelay` executable.

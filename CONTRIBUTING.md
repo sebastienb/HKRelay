@@ -11,7 +11,7 @@ Do not commit generated diagnostic output or request-history files. If a bug req
 ## Development workflow
 
 1. Build and test the shared library and CLI with `swift test`.
-2. If `App/project.yml` changed, regenerate `App/HomeKitRESTBridge.xcodeproj` with XcodeGen.
+2. If `App/project.yml` changed, regenerate `App/HKRelay.xcodeproj` with XcodeGen.
 3. Compile the unsigned Catalyst target with the command in `scripts/check.sh`.
 4. Run `scripts/check-secrets.sh`.
 5. Inspect every changed file before committing.

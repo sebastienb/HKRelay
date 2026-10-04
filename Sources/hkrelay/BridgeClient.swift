@@ -23,7 +23,7 @@ struct BridgeClient {
         request.httpMethod = method
         request.timeoutInterval = 15
         request.setValue("application/json", forHTTPHeaderField: "Accept")
-        request.setValue("homekitlink-cli/0.1.0", forHTTPHeaderField: "User-Agent")
+        request.setValue("hkrelay-cli/0.1.0", forHTTPHeaderField: "User-Agent")
 
         if let token, !token.isEmpty {
             request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")

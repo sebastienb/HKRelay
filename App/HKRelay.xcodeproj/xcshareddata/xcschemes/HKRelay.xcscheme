@@ -15,10 +15,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "601D28CEDF8DF8664E2A3113"
-               BuildableName = "HomeKitLink.app"
-               BlueprintName = "HomeKitRESTBridge"
-               ReferencedContainer = "container:HomeKitRESTBridge.xcodeproj">
+               BlueprintIdentifier = "F619842F2C2E38D8E8BC1FBF"
+               BuildableName = "HKRelay.app"
+               BlueprintName = "HKRelay"
+               ReferencedContainer = "container:HKRelay.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,10 +32,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "601D28CEDF8DF8664E2A3113"
-            BuildableName = "HomeKitLink.app"
-            BlueprintName = "HomeKitRESTBridge"
-            ReferencedContainer = "container:HomeKitRESTBridge.xcodeproj">
+            BlueprintIdentifier = "F619842F2C2E38D8E8BC1FBF"
+            BuildableName = "HKRelay.app"
+            BlueprintName = "HKRelay"
+            ReferencedContainer = "container:HKRelay.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <Testables>
@@ -55,10 +55,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "601D28CEDF8DF8664E2A3113"
-            BuildableName = "HomeKitLink.app"
-            BlueprintName = "HomeKitRESTBridge"
-            ReferencedContainer = "container:HomeKitRESTBridge.xcodeproj">
+            BlueprintIdentifier = "F619842F2C2E38D8E8BC1FBF"
+            BuildableName = "HKRelay.app"
+            BlueprintName = "HKRelay"
+            ReferencedContainer = "container:HKRelay.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <CommandLineArguments>
@@ -74,10 +74,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "601D28CEDF8DF8664E2A3113"
-            BuildableName = "HomeKitLink.app"
-            BlueprintName = "HomeKitRESTBridge"
-            ReferencedContainer = "container:HomeKitRESTBridge.xcodeproj">
+            BlueprintIdentifier = "F619842F2C2E38D8E8BC1FBF"
+            BuildableName = "HKRelay.app"
+            BlueprintName = "HKRelay"
+            ReferencedContainer = "container:HKRelay.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

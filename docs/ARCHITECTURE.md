@@ -13,7 +13,7 @@ Mac Catalyst app
       |
 127.0.0.1:8765 or local IPv4:8765
       |
-MCP client, homekitlink CLI, or experimental LAN client
+MCP client, hkrelay CLI, or experimental LAN client
       |
 OpenClaw or local scripts
 ```

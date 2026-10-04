@@ -9,7 +9,7 @@ Authorization: Bearer YOUR_LOCAL_TOKEN
 Accept: application/json
 ```
 
-Do not put the token in source code, command arguments, URLs, prompts, screenshots, or logs. The `homekitlink` CLI handles the header after its local credential setup. Authentication cannot be turned off. Browser-origin requests are rejected.
+Do not put the token in source code, command arguments, URLs, prompts, screenshots, or logs. The `hkrelay` CLI handles the header after its local credential setup. Authentication cannot be turned off. Browser-origin requests are rejected.
 
 The LAN endpoint is plain HTTP: authentication limits who may make requests, but it does not encrypt request or response data. Use it only on a trusted network and do not expose port `8765` to the internet.
 
@@ -88,11 +88,11 @@ Requests a fresh motion reading for each HomeKit motion characteristic exposed b
 Discover cameras with `GET /v1/accessories`. Their `camera.motionCharacteristicIDs` lists the motion characteristic IDs; an empty array means that the camera exposes no motion characteristic to the bridge. A missing `camera` object means the accessory has no camera profile. Manufacturer, model, and firmware fields help distinguish similarly named cameras.
 
 ```sh
-printf 'header = "Authorization: Bearer %s"\n' "$HKBRIDGE_TOKEN" | curl --config - \
+printf 'header = "Authorization: Bearer %s"\n' "$HKRELAY_TOKEN" | curl --config - \
   --fail-with-body --silent --show-error \
   "http://127.0.0.1:8765/v1/accessories/$ACCESSORY_ID/camera/motion"
 
-homekitlink camera motion ACCESSORY_ID
+hkrelay camera motion ACCESSORY_ID
 ```
 
 Example response (IDs are illustrative):
@@ -108,7 +108,7 @@ Example response (IDs are illustrative):
 
 `true` means motion detected; `false` means no motion currently reported. Multiple sensors return separate readings, taken sequentially, not an atomic combined state. A failed read fails the request rather than reporting false. `motion_unsupported` returns HTTP 404, denied reads return HTTP 403, and a missing/non-Boolean state returns `motion_unavailable` (HTTP 503). HomeKit read failures use the normal error envelope.
 
-You can also read one sensor through the existing characteristic endpoint or `homekitlink read ACCESSORY_ID CHARACTERISTIC_ID`.
+You can also read one sensor through the existing characteristic endpoint or `hkrelay read ACCESSORY_ID CHARACTERISTIC_ID`.
 
 This reports current state only: no push notifications, event history, or person/animal/package classification. Polling can miss brief motion. Keep the Mac awake and the bridge running; no foreground camera capture is required. Locked-desktop behavior still needs validation on real hardware.
 

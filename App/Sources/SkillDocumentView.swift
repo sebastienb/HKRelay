@@ -8,15 +8,15 @@ struct BundledSkill: Sendable {
     let bundleSubdirectory: String
 
     static let restAPI = BundledSkill(
-        title: "HomeKit REST API",
+        title: "HKRelay REST API",
         summary: "Teaches AI agents to call the local REST API directly.",
-        bundleSubdirectory: "homekit-rest-api"
+        bundleSubdirectory: "hkrelay-api"
     )
 
     static let cli = BundledSkill(
-        title: "HomeKitLink CLI",
-        summary: "Teaches AI agents to use the local homekitlink command-line tool.",
-        bundleSubdirectory: "homekitlink-cli"
+        title: "HKRelay CLI",
+        summary: "Teaches AI agents to use the local hkrelay command-line tool.",
+        bundleSubdirectory: "hkrelay-cli"
     )
 
     func load() throws -> String {
@@ -140,7 +140,7 @@ struct SkillDocumentView: View {
 
         do {
             let directoryURL = FileManager.default.temporaryDirectory
-                .appendingPathComponent("HomeKitRESTBridge-SkillExport", isDirectory: true)
+                .appendingPathComponent("HKRelay-SkillExport", isDirectory: true)
             try FileManager.default.createDirectory(
                 at: directoryURL,
                 withIntermediateDirectories: true

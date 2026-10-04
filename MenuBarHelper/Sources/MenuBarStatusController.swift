@@ -27,7 +27,7 @@ final class MenuBarStatusController: NSObject {
 
     private func configureMenu() {
         statusItem.autosaveName = "HomeKitBridgeMenu"
-        statusItem.button?.toolTip = "HomeKitLink"
+        statusItem.button?.toolTip = "HKRelay"
 
         let menu = NSMenu()
         statusMenuItem.isEnabled = false
@@ -35,7 +35,7 @@ final class MenuBarStatusController: NSObject {
         menu.addItem(.separator())
 
         let openItem = NSMenuItem(
-            title: "Open HomeKitLink",
+            title: "Open HKRelay",
             action: #selector(openBridge),
             keyEquivalent: ""
         )
@@ -43,7 +43,7 @@ final class MenuBarStatusController: NSObject {
         menu.addItem(openItem)
 
         let quitItem = NSMenuItem(
-            title: "Quit HomeKitLink",
+            title: "Quit HKRelay",
             action: #selector(quitBridge),
             keyEquivalent: "q"
         )
@@ -99,7 +99,7 @@ final class MenuBarStatusController: NSObject {
 
     private func updateAppearance() {
         let symbolName = bridgeIsRunning ? "house.fill" : "house"
-        let description = bridgeIsRunning ? "HomeKitLink running" : "HomeKitLink unavailable"
+        let description = bridgeIsRunning ? "HKRelay running" : "HKRelay unavailable"
         statusItem.button?.image = NSImage(
             systemSymbolName: symbolName,
             accessibilityDescription: description

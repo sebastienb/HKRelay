@@ -18,8 +18,8 @@ fi
 
 env DEVELOPER_DIR="$XCODE_DEVELOPER_DIR" \
     xcodebuild \
-    -project App/HomeKitRESTBridge.xcodeproj \
-    -scheme HomeKitRESTBridge \
+    -project App/HKRelay.xcodeproj \
+    -scheme HKRelay \
     -configuration Release \
     -destination 'platform=macOS,variant=Mac Catalyst' \
     -derivedDataPath .derived-data \

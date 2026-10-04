@@ -14,7 +14,7 @@ public enum MCPServer {
         }
         guard BearerAuthentication.isAuthorized(headers: request.headers, token: token) else {
             var response = error(id: .null, code: -32000, message: "A valid bearer token is required.", status: 401)
-            response.headers["WWW-Authenticate"] = "Bearer realm=\"HomeKitLink\""
+            response.headers["WWW-Authenticate"] = "Bearer realm=\"HKRelay\""
             return response
         }
         if let version = request.headers["mcp-protocol-version"], !protocolVersions.contains(version) {
@@ -77,7 +77,7 @@ public enum MCPServer {
             return result(id: id, value: .object([
                 "protocolVersion": .string(protocolVersions.contains(version) ? version : protocolVersions[0]),
                 "capabilities": .object(["tools": .object(["listChanged": .bool(false)])]),
-                "serverInfo": .object(["name": .string("homekitlink"), "version": .string("0.1.0")]),
+                "serverInfo": .object(["name": .string("hkrelay"), "version": .string("0.1.0")]),
                 "instructions": .string("Only accessories allowed in the Mac app are exposed. Ask the user before operating devices. Writes require confirm=true and read-write permission.")
             ]))
         case "ping": return result(id: id, value: .object([:]))

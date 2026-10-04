@@ -23,8 +23,8 @@ jobs:
       - name: Compile unsigned Release Mac Catalyst app
         run: |
           xcodebuild \
-            -project App/HomeKitRESTBridge.xcodeproj \
-            -scheme HomeKitRESTBridge \
+            -project App/HKRelay.xcodeproj \
+            -scheme HKRelay \
             -configuration Release \
             -destination 'platform=macOS,variant=Mac Catalyst' \
             -derivedDataPath .derived-data \
@@ -33,7 +33,7 @@ jobs:
 
       - name: Verify release resources
         run: |
-          APP_PATH='.derived-data/Build/Products/Release-maccatalyst/HomeKitLink.app'
+          APP_PATH='.derived-data/Build/Products/Release-maccatalyst/HKRelay.app'
           test -f "$APP_PATH/Contents/Resources/AppIcon.icns"
           test -f "$APP_PATH/Contents/Resources/PrivacyInfo.xcprivacy"
           plutil -lint "$APP_PATH/Contents/Info.plist"

@@ -27,7 +27,7 @@ struct RootView: View {
                     .tag(item)
                 }
             }
-            .navigationTitle("HomeKitLink")
+            .navigationTitle("HKRelay")
             .navigationSplitViewColumnWidth(min: 180, ideal: 210, max: 260)
         } detail: {
             NavigationStack {

@@ -1,12 +1,10 @@
 # Distribution
 
-HomeKitLink is being released as experimental MIT-licensed source. A public source repository does not mean a binary is approved for App Store or direct distribution. Developers need their own local HomeKit signing configuration.
+HKRelay is being released as experimental MIT-licensed source. A public source repository does not mean a binary is approved for App Store or direct distribution. Developers need their own local HomeKit signing configuration.
 
 ## Product name
 
-The current name, HomeKitLink, incorporates HomeKit, which Apple lists as a registered trademark. Apple's third-party trademark guidelines restrict using Apple marks as part of product names and distinguish that from descriptive compatibility references. Treat the current name as an unresolved branding issue: choose an independent product name with a separate compatibility description, or obtain appropriate permission/legal advice before wider promotion. An MIT license does not grant rights to Apple's trademarks.
-
-This is a concern inferred from the published guidelines, not a legal determination about this project's name. No trademark clearance has been performed.
+The project is named HKRelay. HomeKit is used descriptively to identify the technology it supports. The former name incorporated Apple's HomeKit mark directly; the rename avoids that wording. No formal trademark clearance has been performed for HKRelay, and the MIT license does not grant rights to Apple's trademarks. Apple's third-party trademark guidelines distinguish descriptive compatibility references from product branding.
 
 ## HomeKit data and off-device use
 
@@ -25,7 +23,7 @@ These constraints were checked against Apple's published agreement and capabilit
    ./scripts/check.sh
    ```
 
-5. In Xcode, select the HomeKitRESTBridge scheme and **My Mac (Mac Catalyst)**, then choose **Product > Archive**.
+5. In Xcode, select the HKRelay scheme and **My Mac (Mac Catalyst)**, then choose **Product > Archive**.
 6. In Organizer, generate and review the privacy report, validate the archive, and confirm that the main app and embedded menu-bar helper are signed by the intended distribution team.
 7. Distribute the first build through TestFlight before submitting it to App Review.
 
@@ -40,10 +38,10 @@ Do not sell or publish a direct-download build until Apple Developer Support con
 If Apple approves a direct-distribution path, validate the exported artifact before release:
 
 ```sh
-codesign --verify --deep --strict --verbose=2 "HomeKitLink.app"
-codesign -dvvv --entitlements :- "HomeKitLink.app"
-spctl --assess --type execute --verbose=4 "HomeKitLink.app"
-xcrun stapler validate "HomeKitLink.app"
+codesign --verify --deep --strict --verbose=2 "HKRelay.app"
+codesign -dvvv --entitlements :- "HKRelay.app"
+spctl --assess --type execute --verbose=4 "HKRelay.app"
+xcrun stapler validate "HKRelay.app"
 ```
 
 Inspect the nested helper separately and verify that neither executable contains the development-only `com.apple.security.get-task-allow` entitlement.

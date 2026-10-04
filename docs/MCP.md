@@ -49,8 +49,8 @@ The existing 1 MB request limit applies. Request history records `/mcp` plus san
 Enter the token at a hidden prompt in zsh, then initialize without putting the token in command arguments:
 
 ```sh
-printf 'Bridge token: '; read -rs HKBRIDGE_TOKEN; printf '\n'
-printf 'header = "Authorization: Bearer %s"\n' "$HKBRIDGE_TOKEN" | curl --config - \
+printf 'Bridge token: '; read -rs HKRELAY_TOKEN; printf '\n'
+printf 'header = "Authorization: Bearer %s"\n' "$HKRELAY_TOKEN" | curl --config - \
   --fail-with-body --silent --show-error \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json, text/event-stream' \
@@ -58,7 +58,7 @@ printf 'header = "Authorization: Bearer %s"\n' "$HKBRIDGE_TOKEN" | curl --config
   http://127.0.0.1:8765/mcp
 ```
 
-Send `notifications/initialized` without an `id`, then call `tools/list` with an `id`. These subsequent POSTs use the same headers plus `MCP-Protocol-Version: 2025-11-25`. Clear the shell variable when done with `unset HKBRIDGE_TOKEN`.
+Send `notifications/initialized` without an `id`, then call `tools/list` with an `id`. These subsequent POSTs use the same headers plus `MCP-Protocol-Version: 2025-11-25`. Clear the shell variable when done with `unset HKRELAY_TOKEN`.
 
 ## Network and release limitations
 

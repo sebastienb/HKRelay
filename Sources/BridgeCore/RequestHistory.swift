@@ -8,7 +8,7 @@ public enum RequestClientKind: String, Codable, CaseIterable, Sendable {
 
     public var displayName: String {
         switch self {
-        case .cli: "HomeKitLink CLI"
+        case .cli: "HKRelay CLI"
         case .curl: "curl"
         case .browser: "Web browser"
         case .apiClient: "API client"
@@ -67,7 +67,7 @@ public enum RequestHistorySanitizer {
     public static func client(userAgent: String?) -> RequestClientKind {
         guard let userAgent = userAgent?.lowercased() else { return .apiClient }
 
-        if userAgent.hasPrefix("homekitlink-cli/") || userAgent.hasPrefix("hkbridge-cli/") {
+        if userAgent.hasPrefix("hkrelay-cli/") || userAgent.hasPrefix("homekitlink-cli/") || userAgent.hasPrefix("hkbridge-cli/") {
             return .cli
         }
         if userAgent.hasPrefix("curl/") {

@@ -291,10 +291,10 @@ struct CLIPage: View {
     var body: some View {
         Form {
             Section("Useful commands") {
-                CommandRow(command: "homekitlink config set-token", description: "Store the token shown in Security & Logs.")
-                CommandRow(command: "homekitlink status", description: "Check the local bridge connection.")
-                CommandRow(command: "homekitlink accessories list", description: "List accessories allowed in the app.")
-                CommandRow(command: "homekitlink camera motion ACCESSORY_ID", description: "Read a camera's current motion state.")
+                CommandRow(command: "hkrelay config set-token", description: "Store the token shown in Security & Logs.")
+                CommandRow(command: "hkrelay status", description: "Check the local bridge connection.")
+                CommandRow(command: "hkrelay accessories list", description: "List accessories allowed in the app.")
+                CommandRow(command: "hkrelay camera motion ACCESSORY_ID", description: "Read a camera's current motion state.")
             }
 
             Section("CLI AI Skill") {

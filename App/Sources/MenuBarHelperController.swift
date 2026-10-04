@@ -52,7 +52,7 @@ final class MenuBarHelperController {
             .appendingPathComponent("Contents", isDirectory: true)
             .appendingPathComponent("Library", isDirectory: true)
             .appendingPathComponent("LoginItems", isDirectory: true)
-            .appendingPathComponent("HomeKitLink Menu.app", isDirectory: true)
+            .appendingPathComponent("HKRelay Menu.app", isDirectory: true)
 
         guard let helperBundle = Bundle(url: helperURL),
               let identifier = helperBundle.bundleIdentifier else {

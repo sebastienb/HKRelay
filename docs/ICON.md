@@ -1,6 +1,6 @@
 # App icon
 
-HomeKitLink uses an original off-white house with two Wi-Fi cutouts and a dot, a subtle bevel and shadow, and a warm orange gradient. The artwork was refined with the built-in image-generation tool using the earlier icon and a comparison screenshot as visual references, then resized to a 1024 × 1024 opaque PNG for the asset catalog. Reference screenshots are not included in the repository. The icon does not use an exported SF Symbol.
+HKRelay uses an original off-white house with two Wi-Fi cutouts and a dot, a subtle bevel and shadow, and a warm orange gradient. The artwork was refined with the built-in image-generation tool using the earlier icon and a comparison screenshot as visual references, then resized to a 1024 × 1024 opaque PNG for the asset catalog. Reference screenshots are not included in the repository. The icon does not use an exported SF Symbol.
 
 The source asset is `App/Resources/Assets.xcassets/AppIcon.appiconset/AppIcon-1024.png`. Xcode produces the macOS icon from this asset. Keep the source square and opaque; the operating system applies the icon mask.
 

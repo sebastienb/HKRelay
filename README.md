@@ -1,4 +1,4 @@
-# HomeKitLink
+# HKRelay
 
 A Mac app that lets approved local software view and control only the HomeKit accessories you choose.
 
@@ -12,17 +12,17 @@ A Mac app that lets approved local software view and control only the HomeKit ac
 - An HTTP API bound to `127.0.0.1:8765` by default, with opt-in local-network access.
 - Bearer authentication required for every data request, with a user-defined or generated token.
 - A Streamable HTTP MCP endpoint at `/mcp`, always protected by the API bearer token, with six HomeKit tools.
-- The `homekitlink` CLI with stable JSON output for scripts and agents.
-- Camera motion reads through `GET /v1/accessories/{id}/camera/motion` or `homekitlink camera motion ACCESSORY_ID`; camera images and video are not supported.
+- The `hkrelay` CLI with stable JSON output for scripts and agents.
+- Camera motion reads through `GET /v1/accessories/{id}/camera/motion` or `hkrelay camera motion ACCESSORY_ID`; camera images and video are not supported.
 - A private, filterable request history for API and CLI activity, with logging that can be paused at any time.
-- An optional native menu-bar helper that keeps HomeKitLink visible when its main window is closed.
+- An optional native menu-bar helper that keeps HKRelay visible when its main window is closed.
 - Separate OpenClaw skills for the REST API and CLI workflows.
 
-Apple grants HomeKit access to the application as a whole. The per-accessory permissions in this project are an additional boundary enforced by HomeKitLink on every API request.
+Apple grants HomeKit access to the application as a whole. The per-accessory permissions in this project are an additional boundary enforced by HKRelay on every API request.
 
 ## Network access
 
-HomeKit is available on a Mac through Mac Catalyst, not through an ordinary native macOS command-line process. HomeKitLink listens only on the loopback address by default. In the app's **API and MCP** screen, **Allow Local Network Connections** makes the server listen on all IPv4 interfaces so another device on the same network can connect.
+HomeKit is available on a Mac through Mac Catalyst, not through an ordinary native macOS command-line process. HKRelay listens only on the loopback address by default. In the app's **API and MCP** screen, **Allow Local Network Connections** makes the server listen on all IPv4 interfaces so another device on the same network can connect.
 
 LAN mode is experimental and uses unencrypted HTTP on all IPv4 interfaces, including VPN interfaces. A bearer token does not encrypt traffic. Use loopback for the supported local workflow; LAN testing requires an isolated trusted network or a private encrypted connection supplied by the operator. Never port-forward or publicly expose port `8765`. Apple restricts exporting or remotely accessing information obtained from HomeKit, so review Apple's current developer terms before distributing the app; this repository does not provide legal advice.
 
@@ -68,15 +68,15 @@ This is also wired to the Codex **Run** action. Without local signing configurat
 Build the command-line client:
 
 ```sh
-swift build -c release --product homekitlink
+swift build -c release --product hkrelay
 ```
 
-The executable is produced at `.build/release/homekitlink`. Put it in a directory on your `PATH` if OpenClaw or other automation should invoke it.
+The executable is produced at `.build/release/hkrelay`. Put it in a directory on your `PATH` if OpenClaw or other automation should invoke it.
 
 In the app's CLI screen, reveal and copy the API token. Then store it through the CLI's private prompt:
 
 ```sh
-homekitlink config set-token
+hkrelay config set-token
 ```
 
 The CLI stores the token in a credential file with user-only permissions. See [CLI credentials](docs/GETTING_STARTED.md#cli-credentials) for the storage location, environment configuration, and compatibility with earlier versions. Keep the token out of repositories, prompts, issues, screenshots, and logs.
@@ -86,14 +86,14 @@ The CLI stores the token in a credential file with user-only permissions. See [C
 All output is JSON on standard output. A successful response has `"ok": true`; errors have `"ok": false` and a stable error code.
 
 ```sh
-homekitlink status
-homekitlink accessories list
-homekitlink accessories get ACCESSORY_ID
-homekitlink read ACCESSORY_ID CHARACTERISTIC_ID
-homekitlink write ACCESSORY_ID CHARACTERISTIC_ID true --yes
+hkrelay status
+hkrelay accessories list
+hkrelay accessories get ACCESSORY_ID
+hkrelay read ACCESSORY_ID CHARACTERISTIC_ID
+hkrelay write ACCESSORY_ID CHARACTERISTIC_ID true --yes
 ```
 
-The app process must be running. Closing its main window leaves HomeKitLink active; the optional menu-bar item and **Open at Login** behavior are controlled from Overview. Quitting the app stops the API and menu-bar helper. Writes require read-and-write permission for that accessory in the UI. See [the API reference](docs/API.md) for the underlying endpoints and LAN configuration.
+The app process must be running. Closing its main window leaves HKRelay active; the optional menu-bar item and **Open at Login** behavior are controlled from Overview. Quitting the app stops the API and menu-bar helper. Writes require read-and-write permission for that accessory in the UI. See [the API reference](docs/API.md) for the underlying endpoints and LAN configuration.
 
 ## Distribution
 
@@ -107,19 +107,19 @@ See [MCP connection](docs/MCP.md) for setup, tools, protocol details, and suppor
 
 ## OpenClaw
 
-Two OpenClaw skills are included. Install the CLI skill when `homekitlink` is on the host `PATH` and its token has been configured locally:
+Two OpenClaw skills are included. Install the CLI skill when `hkrelay` is on the host `PATH` and its token has been configured locally:
 
 ```sh
-openclaw skills install ./integrations/openclaw/homekitlink-cli
+openclaw skills install ./integrations/openclaw/hkrelay-cli
 ```
 
-Or install the direct REST API skill and configure its bearer token through OpenClaw's secret configuration, following the [REST skill instructions](integrations/openclaw/homekit-rest-api/SKILL.md):
+Or install the direct REST API skill and configure its bearer token through OpenClaw's secret configuration, following the [REST skill instructions](integrations/openclaw/hkrelay-api/SKILL.md):
 
 ```sh
-openclaw skills install ./integrations/openclaw/homekit-rest-api
+openclaw skills install ./integrations/openclaw/hkrelay-api
 ```
 
-Both skills are visible, copyable, and downloadable from their matching tabs in the app. Neither skill can expand an accessory's permissions; only the HomeKitLink UI can do that.
+Both skills are visible, copyable, and downloadable from their matching tabs in the app. Neither skill can expand an accessory's permissions; only the HKRelay UI can do that.
 
 ## Privacy and operational limits
 
