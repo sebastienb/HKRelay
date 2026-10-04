@@ -12,8 +12,8 @@ A Mac app that lets approved local software view and control only the HomeKit ac
 - An HTTP API bound to `127.0.0.1:8765` by default, with opt-in local-network access.
 - Bearer authentication required for every data request, with a user-defined or generated token.
 - A Streamable HTTP MCP endpoint at `/mcp`, always protected by the API bearer token, with six HomeKit tools.
-- The `hkbridge` CLI with stable JSON output for scripts and agents.
-- Camera motion reads through `GET /v1/accessories/{id}/camera/motion` or `hkbridge camera motion ACCESSORY_ID`; camera images and video are not supported.
+- The `homekitlink` CLI with stable JSON output for scripts and agents.
+- Camera motion reads through `GET /v1/accessories/{id}/camera/motion` or `homekitlink camera motion ACCESSORY_ID`; camera images and video are not supported.
 - A private, filterable request history for API and CLI activity, with logging that can be paused at any time.
 - An optional native menu-bar helper that keeps the bridge visible when its main window is closed.
 - Separate OpenClaw skills for the REST API and CLI workflows.
@@ -68,29 +68,29 @@ This is also wired to the Codex **Run** action. Without local signing configurat
 Build the command-line client:
 
 ```sh
-swift build -c release --product hkbridge
+swift build -c release --product homekitlink
 ```
 
-The executable is produced at `.build/release/hkbridge`. Put it in a directory on your `PATH` if OpenClaw or other automation should invoke it.
+The executable is produced at `.build/release/homekitlink`. Put it in a directory on your `PATH` if OpenClaw or other automation should invoke it.
 
 In the app's CLI screen, reveal and copy the API token. Then store it through the CLI's private prompt:
 
 ```sh
-hkbridge config set-token
+homekitlink config set-token
 ```
 
-The token is stored in `~/.config/hkbridge/credentials.json` with user-only permissions. For ephemeral automation, `HKBRIDGE_TOKEN` can be supplied in the process environment instead. Do not place either form in a repository, prompt, issue, screenshot, or log.
+The token is stored in `~/.config/hkbridge/credentials.json` with user-only permissions. This existing location is retained for compatibility with earlier versions of the CLI. For ephemeral automation, `HKBRIDGE_TOKEN` can be supplied in the process environment instead. Do not place either form in a repository, prompt, issue, screenshot, or log.
 
 ## CLI examples
 
 All output is JSON on standard output. A successful response has `"ok": true`; errors have `"ok": false` and a stable error code.
 
 ```sh
-hkbridge status
-hkbridge accessories list
-hkbridge accessories get ACCESSORY_ID
-hkbridge read ACCESSORY_ID CHARACTERISTIC_ID
-hkbridge write ACCESSORY_ID CHARACTERISTIC_ID true --yes
+homekitlink status
+homekitlink accessories list
+homekitlink accessories get ACCESSORY_ID
+homekitlink read ACCESSORY_ID CHARACTERISTIC_ID
+homekitlink write ACCESSORY_ID CHARACTERISTIC_ID true --yes
 ```
 
 The app process must be running. Closing its main window leaves the bridge active; the optional menu-bar item and **Open at Login** behavior are controlled from Overview. Quitting the app stops the API and menu-bar helper. Writes require read-and-write permission for that accessory in the UI. See [the API reference](docs/API.md) for the underlying endpoints and LAN configuration.
@@ -107,7 +107,7 @@ See [MCP connection](docs/MCP.md) for setup, tools, protocol details, and suppor
 
 ## OpenClaw
 
-Two OpenClaw skills are included. Install the CLI skill when `hkbridge` is on the host `PATH` and its token has been configured locally:
+Two OpenClaw skills are included. Install the CLI skill when `homekitlink` is on the host `PATH` and its token has been configured locally:
 
 ```sh
 openclaw skills install ./integrations/openclaw/homekit-rest-cli

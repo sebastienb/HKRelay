@@ -66,10 +66,10 @@ Both devices must be on a network that permits peer-to-peer traffic. The API use
 
 ## Optional command-line client
 
-The `hkbridge` client wraps the same loopback API and emits stable JSON. A source checkout can build it with:
+The `homekitlink` client wraps the same loopback API and emits stable JSON. A source checkout can build it with:
 
 ```sh
-swift build -c release --product hkbridge
+swift build -c release --product homekitlink
 ```
 
 The CLI is built locally from source; this repository does not provide an approved end-user binary package.

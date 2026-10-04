@@ -15,7 +15,7 @@ struct BundledSkill: Sendable {
 
     static let cli = BundledSkill(
         title: "HomeKit CLI",
-        summary: "Teaches AI agents to use the local hkbridge command-line tool.",
+        summary: "Teaches AI agents to use the local homekitlink command-line tool.",
         bundleSubdirectory: "homekit-rest-cli"
     )
 
