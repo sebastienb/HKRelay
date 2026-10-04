@@ -8,7 +8,7 @@ The signed app uses Apple's HomeKit APIs with the user's consent. Apple grants a
 
 The API token is stored in Keychain in signed builds. Unsigned debug builds may use a development token file with user-only permissions. The CLI uses a separate mode-0600 credential file or a process environment variable. Access policies and settings are stored locally in the app container.
 
-Request history is optional and can be paused or cleared. It retains up to 500 entries inside the app's private container: timestamps, paths (which may include device IDs), method, status, client classification, duration, and sanitized JSON request bodies (which may include values written to devices). Query strings and recognized credential fields are redacted. Authentication headers, arbitrary raw user-agent strings, and response bodies are not retained. Redaction cannot recognize arbitrary secrets entered under unrelated JSON fields; never send credentials as characteristic values.
+Request history is optional and can be paused or cleared. It retains up to 500 entries inside the app's private container: timestamps, paths (which may include device IDs), method, status, client classification, duration, and sanitized JSON request bodies (with characteristic values omitted). Query strings, characteristic values and recognized credential fields are redacted. Bodies of rejected authentication/authorization requests and bodies over 16 KiB are omitted. Existing history is sanitized again on load. Authentication headers, arbitrary raw user-agent strings, and response bodies are not retained. Redaction cannot recognize arbitrary secrets entered under unrelated JSON fields; never send credentials as characteristic values.
 
 ## Connected clients
 

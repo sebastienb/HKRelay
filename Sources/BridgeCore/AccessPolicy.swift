@@ -30,7 +30,11 @@ public struct AccessRule: Codable, Equatable, Sendable {
     }
 
     public func effectiveAccess(for characteristicID: String) -> AccessLevel {
-        characteristicOverrides[characteristicID] ?? access
+        // The accessory setting is the upper bound shown to the user in the app.
+        guard access != .denied else { return .denied }
+        let requested = characteristicOverrides[characteristicID] ?? access
+        guard requested != .denied else { return .denied }
+        return access == .readOnly ? .readOnly : requested
     }
 }
 

@@ -59,7 +59,7 @@ final class RequestHistoryStore {
             client: RequestHistorySanitizer.client(userAgent: request.headers["user-agent"]),
             statusCode: response.statusCode,
             durationMilliseconds: Int(max(0, duration) * 1_000),
-            requestBody: RequestHistorySanitizer.requestBody(request.body)
+            requestBody: [401, 403].contains(response.statusCode) ? nil : RequestHistorySanitizer.requestBody(request.body)
         )
 
         records.insert(record, at: 0)
@@ -81,7 +81,8 @@ final class RequestHistoryStore {
             let data = try Data(contentsOf: historyURL)
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .iso8601
-            records = Array(try decoder.decode([RequestHistoryRecord].self, from: data).prefix(maximumRecordCount))
+            records = Array(try decoder.decode([RequestHistoryRecord].self, from: data).prefix(maximumRecordCount)).map(\.redacted)
+            persist()
         } catch {
             persistenceIssue = "Saved history could not be loaded. New requests will still appear here."
         }
@@ -99,11 +100,7 @@ final class RequestHistoryStore {
             let encoder = JSONEncoder()
             encoder.dateEncodingStrategy = .iso8601
             encoder.outputFormatting = [.sortedKeys]
-            try encoder.encode(records).write(to: historyURL, options: .atomic)
-            try fileManager.setAttributes(
-                [.posixPermissions: 0o600],
-                ofItemAtPath: historyURL.path
-            )
+            try PrivateFile.write(encoder.encode(records), to: historyURL)
             persistenceIssue = nil
         } catch {
             persistenceIssue = "History is visible for this session but could not be saved."

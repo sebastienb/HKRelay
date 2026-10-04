@@ -70,6 +70,7 @@ final class HomeKitRepository: NSObject, @preconcurrency HMHomeManagerDelegate {
     }
 
     func homeManagerDidUpdateHomes(_ manager: HMHomeManager) {
+        guard manager === homeManager else { return }
         authorizationStatus = manager.authorizationStatus
         homeDataLoaded = true
         loadedHomeCount = manager.homes.count
@@ -77,6 +78,7 @@ final class HomeKitRepository: NSObject, @preconcurrency HMHomeManagerDelegate {
     }
 
     func homeManager(_ manager: HMHomeManager, didUpdate status: HMHomeManagerAuthorizationStatus) {
+        guard manager === homeManager else { return }
         authorizationStatus = status
         if status.contains(.authorized) {
             rebuildIndex(from: manager.homes)
@@ -95,20 +97,24 @@ final class HomeKitRepository: NSObject, @preconcurrency HMHomeManagerDelegate {
     }
 
     func permittedAccessories() -> [AccessoryDescriptor] {
-        accessories.filter { $0.access != .denied }
+        guard isAuthorized else { return [] }
+        return accessories.filter { $0.access != .denied }.map(\.discoverySnapshot)
     }
 
     func permittedAccessory(id: String) throws -> AccessoryDescriptor {
+        try requireAuthorization()
         guard let accessory = accessories.first(where: { $0.id == id }) else {
             throw APIError(code: "not_found", message: "Accessory not found.")
         }
         guard accessory.access != .denied else {
             throw APIError(code: "access_denied", message: "This accessory is not exposed by the bridge.")
         }
-        return accessory
+        return accessory.discoverySnapshot
     }
 
     func read(accessoryID: String, characteristicID: String) async throws -> CharacteristicValue {
+        try Task.checkCancellation()
+        try requireAuthorization()
         let access = policyStore.document.access(
             for: accessoryID,
             characteristicID: characteristicID
@@ -123,10 +129,16 @@ final class HomeKitRepository: NSObject, @preconcurrency HMHomeManagerDelegate {
         }
 
         try await characteristic.readValue()
+        try Task.checkCancellation()
+        try requireAuthorization()
+        guard policyStore.document.access(for: accessoryID, characteristicID: characteristicID).allowsRead,
+              characteristicIndex[indexKey(accessoryID, characteristicID)] === characteristic else {
+            throw APIError(code: "read_denied", message: "Access changed while the read was pending.")
+        }
         return CharacteristicValue(
             accessoryID: accessoryID,
             characteristicID: characteristicID,
-            value: try JSONValue(any: characteristic.value)
+            value: try jsonValue(for: characteristic)
         )
     }
 
@@ -135,6 +147,8 @@ final class HomeKitRepository: NSObject, @preconcurrency HMHomeManagerDelegate {
         characteristicID: String,
         value: JSONValue
     ) async throws -> CharacteristicValue {
+        try Task.checkCancellation()
+        try requireAuthorization()
         let access = policyStore.document.access(
             for: accessoryID,
             characteristicID: characteristicID
@@ -168,6 +182,20 @@ final class HomeKitRepository: NSObject, @preconcurrency HMHomeManagerDelegate {
             readings.append(reading)
         }
         return readings
+    }
+
+    private func requireAuthorization() throws {
+        guard isAuthorized else {
+            throw APIError(code: "access_denied", message: "Home access is not authorized.")
+        }
+    }
+
+    private func jsonValue(for characteristic: HMCharacteristic) throws -> JSONValue {
+        if characteristic.metadata?.format == HMCharacteristicMetadataFormatBool,
+           let number = characteristic.value as? NSNumber {
+            return .bool(number.boolValue)
+        }
+        return try JSONValue(any: characteristic.value)
     }
 
     private func characteristic(accessoryID: String, characteristicID: String) throws -> HMCharacteristic {
@@ -205,7 +233,7 @@ final class HomeKitRepository: NSObject, @preconcurrency HMHomeManagerDelegate {
                             readable: characteristic.properties.contains(HMCharacteristicPropertyReadable),
                             writable: characteristic.properties.contains(HMCharacteristicPropertyWritable),
                             access: access,
-                            value: try? JSONValue(any: characteristic.value)
+                            value: try? jsonValue(for: characteristic)
                         )
                     }
 

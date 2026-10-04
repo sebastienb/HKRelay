@@ -22,7 +22,7 @@ import Testing
     let body = Data(#"{"value":true,"access_token":"private","nested":{"api_key":"private"}}"#.utf8)
     let displayed = try #require(RequestHistorySanitizer.requestBody(body))
 
-    #expect(displayed.contains(#""value" : true"#))
+    #expect(displayed.contains(#""value" : "[REDACTED]""#))
     #expect(displayed.contains(#""access_token" : "[REDACTED]""#))
     #expect(displayed.contains(#""api_key" : "[REDACTED]""#))
     #expect(!displayed.contains("private"))
@@ -32,4 +32,20 @@ import Testing
     let displayed = try #require(RequestHistorySanitizer.requestBody(Data("private text".utf8)))
     #expect(displayed == "[Non-JSON request body omitted: 12 bytes]")
     #expect(!displayed.contains("private text"))
+}
+
+@Test func historyRedactsStoredValuesAndDeniedBodies() throws {
+    let record = RequestHistoryRecord(method: "POST", path: "/mcp?secret=hidden",
+        client: .apiClient, statusCode: 200, durationMilliseconds: 1,
+        requestBody: #"{"params":{"arguments":{"value":"1234","pin":"5678","passcode":"9999"}}}"#)
+    let sanitized = record.redacted
+    #expect(sanitized.id == record.id)
+    #expect(!sanitized.path.contains("hidden"))
+    let body = try #require(sanitized.requestBody)
+    for secret in ["1234", "5678", "9999"] { #expect(!body.contains(secret)) }
+    let denied = RequestHistoryRecord(method: "POST", path: "/mcp", client: .apiClient,
+        statusCode: 401, durationMilliseconds: 1, requestBody: #"{"anything":"secret"}"#)
+    #expect(denied.redacted.requestBody == nil)
+    #expect(RequestHistorySanitizer.requestBody(Data(repeating: 65, count: 16_385))
+        == "[Large request body omitted: 16385 bytes]")
 }

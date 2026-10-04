@@ -1,4 +1,5 @@
 import Foundation
+import CoreFoundation
 
 public enum JSONValue: Codable, Equatable, Sendable {
     case null
@@ -54,10 +55,13 @@ public enum JSONValue: Codable, Equatable, Sendable {
         switch value {
         case nil, is NSNull:
             self = .null
-        case let value as Bool:
-            self = .bool(value)
         case let value as NSNumber:
-            self = .number(value.doubleValue)
+            // NSNumber(0/1) also bridges to Bool; distinguish the actual CFBoolean type.
+            if CFGetTypeID(value) == CFBooleanGetTypeID() {
+                self = .bool(value.boolValue)
+            } else {
+                self = .number(value.doubleValue)
+            }
         case let value as String:
             self = .string(value)
         case let value as Data:

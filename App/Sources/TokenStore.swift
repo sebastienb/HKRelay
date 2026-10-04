@@ -1,3 +1,4 @@
+import BridgeCore
 import Foundation
 import Security
 
@@ -179,11 +180,7 @@ struct TokenStore {
                 withIntermediateDirectories: true,
                 attributes: [.posixPermissions: 0o700]
             )
-            try Data(token.utf8).write(to: url, options: .atomic)
-            try FileManager.default.setAttributes(
-                [.posixPermissions: 0o600],
-                ofItemAtPath: url.path
-            )
+            try PrivateFile.write(Data(token.utf8), to: url)
         } catch {
             throw TokenStoreError.fileFailure(error.localizedDescription)
         }

@@ -19,7 +19,7 @@ The LAN endpoint is plain HTTP: authentication limits who may make requests, but
 
 ## Local request history
 
-The app's Security & Logs tab displays the API bearer token and can retain the newest 500 parsed API and CLI requests so the user can review method, path, request body, client type, result, and duration. Logging can be paused or cleared from that tab. Authentication headers and response bodies are never retained, query strings and sensitive JSON fields are redacted, and non-JSON bodies are omitted. The native menu-bar helper's internal health polling is not included.
+The app's Security & Logs tab displays the API bearer token and can retain the newest 500 parsed API and CLI requests so the user can review method, path, request body, client type, result, and duration. Logging can be paused or cleared from that tab. Authentication headers and response bodies are never retained, query strings, characteristic values and sensitive JSON fields are redacted. Non-JSON bodies, bodies over 16 KiB, and bodies of authentication/authorization rejections are omitted. The native menu-bar helper's internal health polling is not included.
 
 ## Response envelope
 
@@ -63,7 +63,7 @@ Each result includes a localized `category` label and a stable `categoryType` id
 
 ### `GET /v1/accessories/{accessoryID}`
 
-Returns one permitted accessory with its services and characteristics.
+Returns one permitted accessory with its services and characteristics. List and detail discovery omit cached characteristic values, including for denied characteristics. Use the permission-checked read endpoint below for fresh values.
 
 ### `GET /v1/accessories/{accessoryID}/characteristics/{characteristicID}`
 

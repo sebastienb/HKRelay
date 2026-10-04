@@ -47,6 +47,17 @@ public struct RequestHistoryRecord: Codable, Equatable, Identifiable, Sendable {
     }
 }
 
+public extension RequestHistoryRecord {
+    var redacted: RequestHistoryRecord {
+        RequestHistoryRecord(id: id, timestamp: timestamp, method: method,
+            path: RequestHistorySanitizer.path(path), client: client, statusCode: statusCode,
+            durationMilliseconds: durationMilliseconds,
+            requestBody: [401, 403].contains(statusCode) ? nil : requestBody.flatMap {
+                RequestHistorySanitizer.requestBody(Data($0.utf8))
+            })
+    }
+}
+
 public enum RequestHistorySanitizer {
     public static func path(_ path: String) -> String {
         guard let queryStart = path.firstIndex(of: "?") else { return path }
@@ -70,6 +81,7 @@ public enum RequestHistorySanitizer {
 
     public static func requestBody(_ data: Data, characterLimit: Int = 8_192) -> String? {
         guard !data.isEmpty else { return nil }
+        guard data.count <= 16_384 else { return "[Large request body omitted: \(data.count) bytes]" }
         guard let object = try? JSONSerialization.jsonObject(with: data, options: [.fragmentsAllowed]) else {
             return "[Non-JSON request body omitted: \(data.count) bytes]"
         }
@@ -111,6 +123,9 @@ public enum RequestHistorySanitizer {
             || normalized.contains("secret")
             || normalized.contains("password")
             || normalized.contains("credential")
+            || normalized == "value"
+            || normalized == "pin"
+            || normalized.contains("passcode")
             || normalized == "apikey"
             || normalized == "auth"
             || normalized == "authorization"

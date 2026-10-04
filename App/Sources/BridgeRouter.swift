@@ -85,6 +85,7 @@ final class BridgeRouter {
     }
 
     private func route(_ request: HTTPRequest) async throws -> HTTPResponse {
+        try Task.checkCancellation()
         let path = request.path.split(separator: "?", maxSplits: 1).first.map(String.init) ?? request.path
         let components = path
             .split(separator: "/", omittingEmptySubsequences: true)

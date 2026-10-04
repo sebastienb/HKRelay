@@ -113,6 +113,21 @@ public struct AccessoryDescriptor: Codable, Equatable, Identifiable, Sendable {
 }
 
 extension AccessoryDescriptor {
+    /// Discovery must not expose cached values, including denied characteristics.
+    public var discoverySnapshot: AccessoryDescriptor {
+        var copy = self
+        copy.services = services.map { service in
+            var service = service
+            service.characteristics = service.characteristics.map { characteristic in
+                var characteristic = characteristic
+                characteristic.value = nil
+                return characteristic
+            }
+            return service
+        }
+        return copy
+    }
+
     /// Validate every sensor before starting any HomeKit reads.
     public func cameraMotionReadIDs() throws -> [String] {
         guard access != .denied else {

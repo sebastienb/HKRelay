@@ -1,3 +1,4 @@
+import BridgeCore
 import Foundation
 
 struct CredentialStore {
@@ -43,8 +44,7 @@ struct CredentialStore {
         )
 
         let data = try JSONEncoder().encode(Credentials(token: trimmedToken))
-        try data.write(to: credentialsURL, options: .atomic)
-        try fileManager.setAttributes([.posixPermissions: 0o600], ofItemAtPath: credentialsURL.path)
+        try PrivateFile.write(data, to: credentialsURL)
     }
 
     var credentialsURL: URL {

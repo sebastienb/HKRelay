@@ -101,6 +101,21 @@ struct APIModelsTests {
         }
     }
 
+    @Test("Discovery never exposes cached characteristic values")
+    func discoverySnapshot() throws {
+        var original = motionCamera()
+        original.services[0].characteristics[0].value = .string("private cached value")
+        original.services[0].characteristics[0].access = .denied
+        original.services[0].characteristics[1].value = .bool(true)
+        let snapshot = original.discoverySnapshot
+        #expect(snapshot.id == original.id)
+        #expect(snapshot.services[0].characteristics[0].access == .denied)
+        #expect(snapshot.services[0].characteristics.allSatisfy { $0.value == nil })
+        #expect(original.services[0].characteristics[1].value == .bool(true))
+        let encoded = String(decoding: try JSONEncoder().encode(snapshot), as: UTF8.self)
+        #expect(!encoded.contains("private cached value"))
+    }
+
     private func motionCamera() -> AccessoryDescriptor {
         AccessoryDescriptor(
             id: "camera", name: "Camera", category: "Camera", reachable: true,
