@@ -4,6 +4,8 @@ import ServiceManagement
 @MainActor
 final class MenuBarHelperController {
     static let shared = MenuBarHelperController()
+    private static let registrationLocationKey = "menuBarHelper.registrationLocation"
+    private static let helperName = "HKRelay Menu.app"
 
     private let logger = Logger(
         subsystem: "org.homekitrestbridge.app",
@@ -15,12 +17,23 @@ final class MenuBarHelperController {
     @discardableResult
     func start() throws -> Bool {
         let service = try service()
+        let location = Bundle.main.bundleURL.path + "/" + Self.helperName
+        let defaults = UserDefaults.standard
+        // An enabled registration can still point to a moved or renamed app.
+        // Refresh legacy registrations once, then only when the location changes.
+        if (service.status == .enabled || service.status == .requiresApproval),
+           defaults.string(forKey: Self.registrationLocationKey) != location {
+            try service.unregister()
+            logger.notice("Refreshing the menu bar helper registration after an app move or upgrade.")
+        }
         switch service.status {
         case .enabled:
+            defaults.set(location, forKey: Self.registrationLocationKey)
             logger.notice("Menu bar helper is registered.")
             return false
         case .notRegistered, .notFound:
             try service.register()
+            defaults.set(location, forKey: Self.registrationLocationKey)
             logger.notice("Menu bar helper was registered.")
             return service.status == .requiresApproval
         case .requiresApproval:
@@ -52,7 +65,7 @@ final class MenuBarHelperController {
             .appendingPathComponent("Contents", isDirectory: true)
             .appendingPathComponent("Library", isDirectory: true)
             .appendingPathComponent("LoginItems", isDirectory: true)
-            .appendingPathComponent("HKRelay Menu.app", isDirectory: true)
+            .appendingPathComponent(Self.helperName, isDirectory: true)
 
         guard let helperBundle = Bundle(url: helperURL),
               let identifier = helperBundle.bundleIdentifier else {
