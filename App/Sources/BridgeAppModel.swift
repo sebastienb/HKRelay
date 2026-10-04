@@ -200,8 +200,8 @@ final class BridgeAppModel {
         server.stop { [weak self] in
             Task { @MainActor [weak self] in
                 guard let self else { return }
-                isRestartingServer = false
-                startHTTPServer()
+                self.isRestartingServer = false
+                self.startHTTPServer()
             }
         }
     }
@@ -218,14 +218,14 @@ final class BridgeAppModel {
         server.start { [weak self, weak server] state in
             Task { @MainActor [weak self, weak server] in
                 guard let self, self.server === server else { return }
-                serverState = state
+                self.serverState = state
                 switch state {
                 case let .ready(port):
-                    let scope = isLocalNetworkEnabled ? "local network" : "loopback"
-                    logger.notice("HTTP server ready on \(scope, privacy: .public) port \(port, privacy: .public).")
+                    let scope = self.isLocalNetworkEnabled ? "local network" : "loopback"
+                    self.logger.notice("HTTP server ready on \(scope, privacy: .public) port \(port, privacy: .public).")
                 case let .failed(message):
-                    logger.error("HTTP server failed: \(message, privacy: .public)")
-                    lastError = message
+                    self.logger.error("HTTP server failed: \(message, privacy: .public)")
+                    self.lastError = message
                 case .stopped, .starting:
                     break
                 }
