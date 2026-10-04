@@ -2,6 +2,12 @@
 
 HomeKitLink is being released as experimental MIT-licensed source. A public source repository does not mean a binary is approved for App Store or direct distribution. Developers need their own local HomeKit signing configuration.
 
+## Product name
+
+The current name, HomeKitLink, incorporates HomeKit, which Apple lists as a registered trademark. Apple's third-party trademark guidelines restrict using Apple marks as part of product names and distinguish that from descriptive compatibility references. Treat the current name as an unresolved branding issue: choose an independent product name with a separate compatibility description, or obtain appropriate permission/legal advice before wider promotion. An MIT license does not grant rights to Apple's trademarks.
+
+This is a concern inferred from the published guidelines, not a legal determination about this project's name. No trademark clearance has been performed.
+
 ## HomeKit data and off-device use
 
 Apple Developer Program License Agreement section 3.3.3(I) restricts exporting, remotely accessing, or transferring HomeKit information off the applicable product unless Apple expressly permits it in documentation. LAN clients and cloud-connected agents raise an unresolved distribution/compliance question. Do not advertise those workflows as Apple-approved or submit a binary claiming they are approved. Obtain confirmation from Apple for the intended behavior; user consent and an open-source license alone do not establish an exception.
@@ -52,3 +58,6 @@ Never commit developer-team identifiers, certificates, provisioning profiles, Ap
 - [Distributing apps for beta testing and releases](https://developer.apple.com/documentation/xcode/distributing-your-app-for-beta-testing-and-releases)
 - [Notarizing macOS software before distribution](https://developer.apple.com/documentation/security/notarizing-macos-software-before-distribution)
 - [Apple Developer Program License Agreement](https://developer.apple.com/support/terms/apple-developer-program-license-agreement/)
+
+- [Apple trademark guidelines](https://www.apple.com/legal/intellectual-property/guidelinesfor3rdparties.html)
+- [Apple trademark list](https://www.apple.com/legal/intellectual-property/trademark/appletmlist.html)

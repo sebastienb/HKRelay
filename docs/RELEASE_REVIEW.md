@@ -42,6 +42,9 @@ Working-tree and reachable-history scanners check common credential formats, pri
 
 ## Remaining constraints
 
+The name HomeKitLink includes Apple's HomeKit mark. Apple's trademark guidelines restrict incorporating its marks into product names. This is an unresolved naming concern, separate from technical security; consider an independent name before wider promotion. The source license does not provide trademark permission. See [Distribution](DISTRIBUTION.md#product-name) for the primary references and limits of this assessment.
+
+
 LAN HTTP is unencrypted and experimental; authentication does not protect against network interception. The supported local workflow is loopback with a local client. The project supplies no TLS, public hosting, OAuth, cloud forwarding, or automatic secure-remote deployment.
 
 A token has the same grants for every holder. The app cannot verify human approval claimed by a client, prevent client-side forwarding of results, or roll back a write already submitted to HomeKit. Timeouts may occur after a physical action succeeds; writes must not be automatically retried.
