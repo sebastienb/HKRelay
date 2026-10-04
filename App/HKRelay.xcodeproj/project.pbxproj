@@ -11,6 +11,7 @@
 		00D19203771787D802CDB9C9 /* PolicyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00D40A25740CEDB3617040F /* PolicyStore.swift */; };
 		054065CFFAEFF50A517EDA71 /* LocalNetworkAddressProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F350830291B3D2DFE072364 /* LocalNetworkAddressProvider.swift */; };
 		0A5466499498E09A29263FD5 /* APIEndpointRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363662E51E714738376E949F /* APIEndpointRow.swift */; };
+		165374CB50FA269D0E2EA702 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 592E63B7236BE03451F631B1 /* Assets.xcassets */; };
 		1AFAC78C9DFBE5EA06A6296F /* HKRelayApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D22EC9FAEE1A92B9A512F00 /* HKRelayApp.swift */; };
 		1C7D7877CCCF4A733BBCB045 /* MenuBarHelperController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7834F3E539C2D9F118C006 /* MenuBarHelperController.swift */; };
 		1F992F52CCE70F0B02F6520C /* CatalystWindowSizeConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618F96B0DB5247E13832FCD7 /* CatalystWindowSizeConfigurator.swift */; };
@@ -79,6 +80,7 @@
 		3A06133116FBD9132B863AF8 /* BridgeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeRouter.swift; sourceTree = "<group>"; };
 		447F22512713556AE9118D23 /* HistoryPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryPage.swift; sourceTree = "<group>"; };
 		4D22EC9FAEE1A92B9A512F00 /* HKRelayApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKRelayApp.swift; sourceTree = "<group>"; };
+		592E63B7236BE03451F631B1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		618F96B0DB5247E13832FCD7 /* CatalystWindowSizeConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalystWindowSizeConfigurator.swift; sourceTree = "<group>"; };
 		6376F1D38E7E71413484F901 /* HomeKitRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeKitRepository.swift; sourceTree = "<group>"; };
 		68C668CAAB76066AEA168082 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 		358C60ABE2E40F3B123306BF /* MenuBarHelper */ = {
 			isa = PBXGroup;
 			children = (
+				DB2A930E8DA75480BF28122A /* Resources */,
 				318C25593AF6F5FCBA614464 /* Sources */,
 			);
 			path = MenuBarHelper;
@@ -219,6 +222,14 @@
 			path = openclaw;
 			sourceTree = "<group>";
 		};
+		DB2A930E8DA75480BF28122A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				592E63B7236BE03451F631B1 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		E8F47B149598762AEC0869A3 = {
 			isa = PBXGroup;
 			children = (
@@ -250,6 +261,7 @@
 			buildConfigurationList = 5A032058D33A794B1BA0AEE4 /* Build configuration list for PBXNativeTarget "HKRelayMenu" */;
 			buildPhases = (
 				09203340F0EABF7C3363487A /* Sources */,
+				92EAAABF457E8149F1E339D6 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -336,6 +348,14 @@
 				228D2049173F157AC54B3044 /* PrivacyInfo.xcprivacy in Resources */,
 				6C032E92280ABB279D783698 /* hkrelay-api in Resources */,
 				68EE9B1B6334E1A2A8287A00 /* hkrelay-cli in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		92EAAABF457E8149F1E339D6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				165374CB50FA269D0E2EA702 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

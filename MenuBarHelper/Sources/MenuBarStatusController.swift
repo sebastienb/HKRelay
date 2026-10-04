@@ -3,6 +3,7 @@ import Foundation
 
 @MainActor
 final class MenuBarStatusController: NSObject {
+    private let menuIcon = NSImage(named: "MenuBarTemplate")
     private let statusItem: NSStatusItem
     private let statusMenuItem = NSMenuItem(title: "Checking Bridge…", action: nil, keyEquivalent: "")
     private var timer: Timer?
@@ -98,13 +99,11 @@ final class MenuBarStatusController: NSObject {
     }
 
     private func updateAppearance() {
-        let symbolName = bridgeIsRunning ? "house.badge.wifi.fill" : "house.badge.wifi"
         let description = bridgeIsRunning ? "HKRelay running" : "HKRelay unavailable"
-        statusItem.button?.image = NSImage(
-            systemSymbolName: symbolName,
-            accessibilityDescription: description
-        )
-        statusItem.button?.image?.isTemplate = true
+        menuIcon?.isTemplate = true
+        menuIcon?.accessibilityDescription = description
+        statusItem.button?.image = menuIcon
+        statusItem.button?.alphaValue = bridgeIsRunning ? 1 : 0.45
         statusMenuItem.title = bridgeIsRunning ? "Bridge Running" : "Bridge Unavailable"
         statusItem.button?.toolTip = description
     }

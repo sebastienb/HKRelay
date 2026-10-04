@@ -96,6 +96,7 @@ targets:
       Release: Config/Shared.xcconfig
     sources:
       - path: ../MenuBarHelper/Sources
+      - path: ../MenuBarHelper/Resources/Assets.xcassets
     info:
       path: ../MenuBarHelper/Resources/Info.plist
       properties:
