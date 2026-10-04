@@ -1,0 +1,47 @@
+# macOS
+.DS_Store
+
+# Swift and Xcode build products
+.build/
+.derived-data*/
+DerivedData/
+build/
+*.xcresult
+**/xcuserdata/
+*.xcuserstate
+
+# Signing identities and provisioning material
+*.cer
+*.p12
+*.pem
+*.key
+*.mobileprovision
+*.provisionprofile
+App/Config/Local.xcconfig
+
+# Runtime credentials and private local configuration
+.env
+.env.*
+!.env.example
+credentials.json
+secrets.json
+*.secrets.json
+*.private.json
+
+# Home data exports and diagnostic logs
+homekit-export*.json
+bridge-diagnostics*.json
+*.log
+
+# Editor state
+.idea/
+.vscode/
+*.swp
+*~
+
+# Private runtime history and packaged local artifacts
+request-history.json
+development-api-token
+*.app/
+*.dmg
+*.zip

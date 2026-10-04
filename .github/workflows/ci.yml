@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: macos-15
+    steps:
+      - name: Check out source
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Check for accidental disclosures
+        run: ./scripts/check-secrets.sh
+
+      - name: Test shared library and CLI
+        run: swift test
+
+      - name: Compile unsigned Release Mac Catalyst app
+        run: |
+          xcodebuild \
+            -project App/HomeKitRESTBridge.xcodeproj \
+            -scheme HomeKitRESTBridge \
+            -configuration Release \
+            -destination 'platform=macOS,variant=Mac Catalyst' \
+            -derivedDataPath .derived-data \
+            CODE_SIGNING_ALLOWED=NO \
+            build
+
+      - name: Verify release resources
+        run: |
+          APP_PATH='.derived-data/Build/Products/Release-maccatalyst/HomeKitLink.app'
+          test -f "$APP_PATH/Contents/Resources/AppIcon.icns"
+          test -f "$APP_PATH/Contents/Resources/PrivacyInfo.xcprivacy"
+          plutil -lint "$APP_PATH/Contents/Info.plist"
+          plutil -lint "$APP_PATH/Contents/Resources/PrivacyInfo.xcprivacy"

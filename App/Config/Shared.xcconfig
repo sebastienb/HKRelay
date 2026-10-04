@@ -1,0 +1,5 @@
+// Public defaults. Personal signing values belong only in ignored Local.xcconfig.
+HKBRIDGE_BUNDLE_IDENTIFIER = org.homekitrestbridge.app
+HKBRIDGE_DEVELOPMENT_TEAM =
+
+#include? "Local.xcconfig"
