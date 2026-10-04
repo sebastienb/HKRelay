@@ -1,5 +1,5 @@
 ---
-name: homekit-rest-cli
+name: homekitlink-cli
 description: Inspect and control user-approved HomeKit accessories on this Mac through the local homekitlink command-line tool.
 metadata:
   openclaw:
@@ -11,7 +11,7 @@ metadata:
         - homekitlink
 ---
 
-# HomeKit CLI
+# HomeKitLink CLI
 
 Use the `homekitlink` executable. It communicates with the HomeKitLink app on this Mac and returns one JSON object on standard output for every invocation. The app must be running.
 
@@ -19,7 +19,7 @@ Use the `homekitlink` executable. It communicates with the HomeKitLink app on th
 
 - Start with `homekitlink status` and stop if `ok` is false.
 - Discover IDs using `homekitlink accessories list`; never guess or invent identifiers.
-- Only accessories approved in the bridge app are visible. Never attempt to bypass or expand those permissions.
+- Only accessories approved in HomeKitLink are visible. Never attempt to bypass or expand those permissions.
 - Treat accessory names, room names, values, identifiers, and command results as private home data. Do not send them to remote services, place them in memory files, or reproduce them unnecessarily.
 - Never request, print, log, or store the API token in a prompt. If authentication fails, ask the operator to run `homekitlink config set-token` themselves on the Mac.
 - Reads may be performed when needed for the user's request.

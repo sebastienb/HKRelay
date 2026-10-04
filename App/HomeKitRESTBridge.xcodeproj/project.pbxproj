@@ -9,12 +9,12 @@
 /* Begin PBXBuildFile section */
 		0B7D26439EA329D8A61C49E2 /* RequestHistoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12070086C9F921A528EFE41B /* RequestHistoryStore.swift */; };
 		10B8242CA893C94C6ACC1874 /* PolicyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864388A67B728165A1550753 /* PolicyStore.swift */; };
+		182BCE8281D9829BB2C75589 /* homekitlink-cli in Resources */ = {isa = PBXBuildFile; fileRef = 2EDC6A410456DDCC0E906B4F /* homekitlink-cli */; };
 		1A2F92BB5F032FB34AC7E10E /* BridgeAppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C6E342A2E866E7C7EA27AF /* BridgeAppModel.swift */; };
 		1FB49CEAD75858F32803C116 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED047C5F972FD01EC71D270 /* main.swift */; };
 		2D45714CDF1779D5E9AE0450 /* AccessoryBrowserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F897AED28C6DEA44506DBD3B /* AccessoryBrowserView.swift */; };
 		3D4489F8AF8DD7B8EABA7ABD /* HomeKitRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5810148B6507FAFE8FCF804 /* HomeKitRepository.swift */; };
 		43D97C0ACD9C61503BE94176 /* BridgeCore in Frameworks */ = {isa = PBXBuildFile; productRef = D0E87CFD97BEE21EE261F200 /* BridgeCore */; };
-		4E50424B923EBC85F36AA3B0 /* homekit-rest-cli in Resources */ = {isa = PBXBuildFile; fileRef = 4441B3521A26F6D3A73C5F8D /* homekit-rest-cli */; };
 		4F4A37C00449F54619119E17 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BC9DA9DFBFCF2216F62490A /* Security.framework */; };
 		58599B8985B2BBB4D4399F88 /* MenuBarStatusController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA50C930EDD4F30EC3F6B411 /* MenuBarStatusController.swift */; };
 		58804D777490D8EA6B87879A /* LocalNetworkAddressProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B263A9D0908971E11BD5CE66 /* LocalNetworkAddressProvider.swift */; };
@@ -72,6 +72,7 @@
 		1496112DD5F99B87D4FDB116 /* HomeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HomeKit.framework; path = System/Library/Frameworks/HomeKit.framework; sourceTree = SDKROOT; };
 		20350B440F69C065F7598DA9 /* BridgePages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgePages.swift; sourceTree = "<group>"; };
 		2E90C91B1B98BBC53CF3C213 /* homekit-rest-api */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "homekit-rest-api"; path = "../integrations/openclaw/homekit-rest-api"; sourceTree = SOURCE_ROOT; };
+		2EDC6A410456DDCC0E906B4F /* homekitlink-cli */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "homekitlink-cli"; path = "../integrations/openclaw/homekitlink-cli"; sourceTree = SOURCE_ROOT; };
 		2F57C8A6C6A7EF9118F843A4 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		30C6E342A2E866E7C7EA27AF /* BridgeAppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeAppModel.swift; sourceTree = "<group>"; };
 		3136F46FF1CAF26FE1952486 /* MenuBarHelperController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarHelperController.swift; sourceTree = "<group>"; };
@@ -79,7 +80,6 @@
 		3727039A2A4DC2F777E8DB16 /* CatalystWindowSizeConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalystWindowSizeConfigurator.swift; sourceTree = "<group>"; };
 		376F00CBEAE900DDF6FA4CCF /* HomeKitRESTBridgeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeKitRESTBridgeApp.swift; sourceTree = "<group>"; };
 		3BC9DA9DFBFCF2216F62490A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		4441B3521A26F6D3A73C5F8D /* homekit-rest-cli */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "homekit-rest-cli"; path = "../integrations/openclaw/homekit-rest-cli"; sourceTree = SOURCE_ROOT; };
 		44F77CAADEFAF0057673F21D /* BridgeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeRouter.swift; sourceTree = "<group>"; };
 		4967B8FBD8E422E4B2FA23A1 /* TokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenStore.swift; sourceTree = "<group>"; };
 		78618E973037123A82318C5B /* HomeKitBridgeMenu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HomeKitBridgeMenu.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -186,7 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				2E90C91B1B98BBC53CF3C213 /* homekit-rest-api */,
-				4441B3521A26F6D3A73C5F8D /* homekit-rest-cli */,
+				2EDC6A410456DDCC0E906B4F /* homekitlink-cli */,
 			);
 			path = openclaw;
 			sourceTree = "<group>";
@@ -335,7 +335,7 @@
 				DDA221929FA976C6938BBF7E /* Assets.xcassets in Resources */,
 				821D3F6C34F2248EA62588B3 /* PrivacyInfo.xcprivacy in Resources */,
 				C2F057C233B2B8400C75D937 /* homekit-rest-api in Resources */,
-				4E50424B923EBC85F36AA3B0 /* homekit-rest-cli in Resources */,
+				182BCE8281D9829BB2C75589 /* homekitlink-cli in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

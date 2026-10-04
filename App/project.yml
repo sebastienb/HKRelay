@@ -25,7 +25,7 @@ targets:
       - path: ../integrations/openclaw/homekit-rest-api
         type: folder
         buildPhase: resources
-      - path: ../integrations/openclaw/homekit-rest-cli
+      - path: ../integrations/openclaw/homekitlink-cli
         type: folder
         buildPhase: resources
     info:

@@ -110,7 +110,7 @@ See [MCP connection](docs/MCP.md) for setup, tools, protocol details, and suppor
 Two OpenClaw skills are included. Install the CLI skill when `homekitlink` is on the host `PATH` and its token has been configured locally:
 
 ```sh
-openclaw skills install ./integrations/openclaw/homekit-rest-cli
+openclaw skills install ./integrations/openclaw/homekitlink-cli
 ```
 
 Or install the direct REST API skill and configure its bearer token through OpenClaw's secret configuration, following the [REST skill instructions](integrations/openclaw/homekit-rest-api/SKILL.md):
