@@ -74,6 +74,12 @@ swift build -c release --product homekitlink
 
 The CLI is built locally from source; this repository does not provide an approved end-user binary package.
 
+### CLI credentials
+
+Run `homekitlink config set-token` and enter the token at the private prompt. The CLI stores it in `~/.config/hkbridge/credentials.json` with user-only permissions. This location is retained for compatibility with earlier versions; existing credentials continue to work after the CLI rename.
+
+For ephemeral automation, the CLI also accepts `HKBRIDGE_TOKEN` from the process environment. `HKBRIDGE_CONFIG_DIR` overrides the directory used for the credential file. These configuration names remain supported for existing setups. Keep tokens out of command arguments, repositories, prompts, issues, screenshots, and logs.
+
 ## Background operation
 
 The bridge continues running after its main window closes. Both background conveniences are opt-in:
