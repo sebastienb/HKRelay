@@ -82,12 +82,12 @@ For ephemeral automation, the CLI also accepts `HKRELAY_TOKEN` from the process 
 
 ## Background operation
 
-The bridge continues running after its main window closes. Both background conveniences are opt-in:
+Close the last window with the red close button or ⌘W to leave the REST API, MCP, and CLI access running in the background:
 
-- **Show Menu Bar Item While Running** keeps a status item available while the bridge runs. macOS lists its helper under Login Items, and the bridge unregisters it when you quit.
-- **Open at Login** asks macOS to start the main app when you sign in.
+- **Show Menu Bar Item While Running** is enabled by default for new installations. It keeps a status item available while the bridge runs; existing visibility preferences are preserved. Choose **Open HKRelay** from this menu to reopen a window. macOS lists its helper under Login Items, and the bridge unregisters it when you quit.
+- **Open at Login** is opt-in and asks macOS to start the main app when you sign in.
 
-Quit the app to stop the API server.
+Choose **Quit HKRelay** from the menu-bar item or the app menu (⌘Q) to stop the API server and menu-bar helper. If you hide the menu-bar item, use the Dock to reopen or quit the app.
 
 ## Troubleshooting
 

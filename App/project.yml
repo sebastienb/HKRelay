@@ -40,6 +40,9 @@ targets:
         ITSAppUsesNonExemptEncryption: false
         NSSupportsAutomaticTermination: false
         NSSupportsSuddenTermination: false
+        # Catalyst single-scene apps quit when their last window closes.
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: true
         UILaunchScreen: {}
         UISupportedInterfaceOrientations:
           - UIInterfaceOrientationPortrait

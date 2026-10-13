@@ -15,7 +15,7 @@ A Mac app that lets approved local software view and control only the HomeKit ac
 - The `hkrelay` CLI with stable JSON output for scripts and agents.
 - Camera motion reads through `GET /v1/accessories/{id}/camera/motion` or `hkrelay camera motion ACCESSORY_ID`; camera images and video are not supported.
 - A private, filterable request history for API and CLI activity, with logging that can be paused at any time.
-- An optional native menu-bar helper that keeps HKRelay visible when its main window is closed.
+- A native menu-bar helper, enabled by default, that keeps HKRelay accessible when its windows are closed.
 - Separate OpenClaw skills for the REST API and CLI workflows.
 
 Apple grants HomeKit access to the application as a whole. The per-accessory permissions in this project are an additional boundary enforced by HKRelay on every API request.
@@ -93,7 +93,7 @@ hkrelay read ACCESSORY_ID CHARACTERISTIC_ID
 hkrelay write ACCESSORY_ID CHARACTERISTIC_ID true --yes
 ```
 
-The app process must be running. Closing its main window leaves HKRelay active; the optional menu-bar item and **Open at Login** behavior are controlled from Overview. Quitting the app stops the API and menu-bar helper. Writes require read-and-write permission for that accessory in the UI. See [the API reference](docs/API.md) for the underlying endpoints and LAN configuration.
+The app process must be running. Closing the last window (the red close button or ⌘W) leaves the REST API, MCP, and CLI access running. Use **Open HKRelay** in the menu bar to reopen a window, or **Quit HKRelay** to stop the service and remove the menu-bar item. The menu-bar item is enabled by default for new installations; its visibility and **Open at Login** are controlled from Overview. An existing choice to hide the menu-bar item is preserved, and the Dock can still reopen or quit the app. Writes require read-and-write permission for that accessory in the UI. See [the API reference](docs/API.md) for the underlying endpoints and LAN configuration.
 
 ## Distribution
 

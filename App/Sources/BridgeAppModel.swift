@@ -36,6 +36,9 @@ final class BridgeAppModel {
 
     init(defaults: UserDefaults = .standard) {
         self.defaults = defaults
+        // New installations keep a visible way to reopen or quit the service.
+        // Preserve an existing user's explicit choice to hide the menu item.
+        defaults.register(defaults: [Self.menuBarItemEnabledKey: true])
         isMenuBarItemEnabled = defaults.bool(forKey: Self.menuBarItemEnabledKey)
         isLocalNetworkEnabled = defaults.bool(forKey: Self.localNetworkEnabledKey)
         localNetworkAddresses = LocalNetworkAddressProvider.ipv4Addresses()

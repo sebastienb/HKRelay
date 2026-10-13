@@ -38,3 +38,7 @@ jobs:
           test -f "$APP_PATH/Contents/Resources/PrivacyInfo.xcprivacy"
           plutil -lint "$APP_PATH/Contents/Info.plist"
           plutil -lint "$APP_PATH/Contents/Resources/PrivacyInfo.xcprivacy"
+          # Single-scene Catalyst apps quit when the final window closes.
+          test "$(/usr/libexec/PlistBuddy -c 'Print :UIApplicationSceneManifest:UIApplicationSupportsMultipleScenes' "$APP_PATH/Contents/Info.plist")" = true
+          test "$(/usr/libexec/PlistBuddy -c 'Print :NSSupportsAutomaticTermination' "$APP_PATH/Contents/Info.plist")" = false
+          test "$(/usr/libexec/PlistBuddy -c 'Print :NSSupportsSuddenTermination' "$APP_PATH/Contents/Info.plist")" = false
