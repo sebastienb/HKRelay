@@ -308,12 +308,17 @@ private struct AccessoryDetailHost: View {
 private struct AccessoryPermissionDetailView: View {
     let accessory: AccessoryDescriptor
     let setAccess: (AccessLevel) -> Void
+    @State private var searchText = ""
 
     var body: some View {
+        let deviceRows = filteredDeviceRows
+        let services = filteredServices
+        let shownCount = deviceRows.count + services.reduce(0) { $0 + $1.characteristics.count }
+
         Form {
             Section("Permission") {
                 Picker(
-                    "REST and CLI access",
+                    "REST, MCP, and CLI access",
                     selection: Binding(
                         get: { accessory.access },
                         set: { access in setAccess(access) }
@@ -330,29 +335,26 @@ private struct AccessoryPermissionDetailView: View {
                     .foregroundStyle(.secondary)
             }
 
-            Section("Device") {
-                LabeledContent("Name", value: accessory.name)
-                LabeledContent("Room", value: accessory.room ?? "Unassigned")
-                LabeledContent("Type", value: accessory.category)
-                if let manufacturer = accessory.manufacturer, !manufacturer.isEmpty {
-                    LabeledContent("Manufacturer", value: manufacturer)
-                }
-                if let model = accessory.model, !model.isEmpty {
-                    LabeledContent("Model", value: model)
-                }
-                if let firmwareVersion = accessory.firmwareVersion, !firmwareVersion.isEmpty {
-                    LabeledContent("Firmware", value: firmwareVersion)
-                }
-                LabeledContent("Reachable", value: accessory.reachable ? "Yes" : "No")
-                if let camera = accessory.camera {
-                    LabeledContent("HomeKit motion", value: camera.motionCharacteristicIDs.isEmpty ? "Not exposed" : "Available")
+            Section {
+                Text("\(shownCount) of \(propertyCount) properties")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                    .monospacedDigit()
+            }
+
+            if !deviceRows.isEmpty {
+                Section("Device") {
+                    ForEach(deviceRows, id: \.key) { row in
+                        LabeledContent(row.key, value: row.value)
+                            .textSelection(.enabled)
+                    }
                 }
             }
 
-            ForEach(accessory.services) { service in
+            ForEach(services) { service in
                 Section(service.name) {
                     ForEach(service.characteristics) { characteristic in
-                        HStack {
+                        HStack(alignment: .top) {
                             VStack(alignment: .leading) {
                                 Text(characteristic.name)
                                 Text(capabilities(for: characteristic))
@@ -363,15 +365,80 @@ private struct AccessoryPermissionDetailView: View {
                             if let value = characteristic.value {
                                 Text(display(value))
                                     .foregroundStyle(.secondary)
-                                    .lineLimit(1)
+                                    .multilineTextAlignment(.trailing)
+                                    .fixedSize(horizontal: false, vertical: true)
                             }
                         }
+                        .textSelection(.enabled)
                     }
                 }
+            }
+
+            if shownCount == 0 {
+                ContentUnavailableView(
+                    "No matching properties",
+                    systemImage: "magnifyingglass",
+                    description: Text("Try a different key, value, or service name.")
+                )
             }
         }
         .formStyle(.grouped)
         .navigationTitle(accessory.name)
+        .searchable(text: $searchText, prompt: "Filter keys and values")
+    }
+
+    private var query: String {
+        searchText.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+
+    private var deviceRows: [(key: String, value: String)] {
+        var rows = [
+            (key: "Name", value: accessory.name),
+            (key: "Room", value: accessory.room ?? "Unassigned"),
+            (key: "Type", value: accessory.category)
+        ]
+        for (key, value) in [
+            ("Manufacturer", accessory.manufacturer),
+            ("Model", accessory.model),
+            ("Firmware", accessory.firmwareVersion)
+        ] {
+            if let value, !value.isEmpty { rows.append((key, value)) }
+        }
+        rows.append(("Reachable", accessory.reachable ? "Yes" : "No"))
+        if let camera = accessory.camera {
+            rows.append(("HomeKit motion", camera.motionCharacteristicIDs.isEmpty ? "Not exposed" : "Available"))
+        }
+        return rows
+    }
+
+    private var filteredDeviceRows: [(key: String, value: String)] {
+        deviceRows.filter { matches([$0.key, $0.value]) }
+    }
+
+    private var filteredServices: [ServiceDescriptor] {
+        accessory.services.compactMap { service in
+            var filtered = service
+            if !matches([service.name, service.type, service.id]) {
+                filtered.characteristics = service.characteristics.filter { characteristic in
+                    var fields = [characteristic.name, characteristic.type, characteristic.id,
+                                  capabilities(for: characteristic)]
+                    if let value = characteristic.value {
+                        fields.append(display(value))
+                        fields.append(jsonText(value))
+                    }
+                    return matches(fields)
+                }
+            }
+            return filtered.characteristics.isEmpty ? nil : filtered
+        }
+    }
+
+    private var propertyCount: Int {
+        deviceRows.count + accessory.services.reduce(0) { $0 + $1.characteristics.count }
+    }
+
+    private func matches(_ fields: [String]) -> Bool {
+        query.isEmpty || fields.contains { $0.localizedStandardContains(query) }
     }
 
     private func capabilities(for characteristic: CharacteristicDescriptor) -> String {
@@ -389,9 +456,15 @@ private struct AccessoryPermissionDetailView: View {
         case let .bool(value): value ? "true" : "false"
         case let .number(value): value.formatted()
         case let .string(value): value
-        case .array: "Array"
-        case .object: "Object"
+        case .array, .object: jsonText(value)
         }
+    }
+
+    private func jsonText(_ value: JSONValue) -> String {
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = [.sortedKeys, .withoutEscapingSlashes]
+        guard let data = try? encoder.encode(value) else { return "" }
+        return String(decoding: data, as: UTF8.self)
     }
 }
 
