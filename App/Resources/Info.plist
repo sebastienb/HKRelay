@@ -36,6 +36,20 @@
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
 		<true/>
+		<key>UISceneConfigurations</key>
+		<dict>
+			<key>UIWindowSceneSessionRoleApplication</key>
+			<array>
+				<dict>
+					<key>UISceneConfigurationName</key>
+					<string>HKRelay</string>
+				</dict>
+				<dict>
+					<key>UISceneConfigurationName</key>
+					<string>HKRelay Command</string>
+				</dict>
+			</array>
+		</dict>
 	</dict>
 	<key>UILaunchScreen</key>
 	<dict/>

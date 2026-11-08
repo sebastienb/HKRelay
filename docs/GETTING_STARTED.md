@@ -84,6 +84,8 @@ For ephemeral automation, the CLI also accepts `HKRELAY_TOKEN` from the process 
 
 Close the last window with the red close button or ⌘W to leave the REST API, MCP, and CLI access running in the background:
 
+- **Accessory control shows a transient command card.** When the main window is closed or minimized, HKRelay shows one compact window at the top right with the accessory name and command. It provides a foreground scene for HomeKit without reopening the main window. Concurrent requests share the card; it closes 1.5 seconds after the last request finishes, or 3 seconds after a failure. A pending creation remains reserved if a request times out, preventing a cascade of windows. Status and accessory discovery do not show a card. If the card cannot open, the API returns `window_required` (503); choose **Open HKRelay** from the menu bar and retry.
+
 - **Show Menu Bar Item While Running** is enabled by default for new installations. It keeps a status item available while the bridge runs; existing visibility preferences are preserved. Choose **Open HKRelay** from this menu to reopen a window. macOS lists its helper under Login Items, and the bridge unregisters it when you quit.
 - **Open at Login** is opt-in and asks macOS to start the main app when you sign in.
 

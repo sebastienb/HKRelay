@@ -65,6 +65,13 @@ struct OverviewPage: View {
                         .foregroundStyle(.secondary)
                 }
             }
+
+            Section("Why a command window appears") {
+                Text("HKRelay uses Apple’s HomeKit framework through Mac Catalyst. HomeKit accessory reads and writes can fail when the app has no foreground window, even though the API server is still running.")
+                Text("When the main window is closed or minimized, HKRelay briefly shows the accessory and command in a small card at the top right. This gives HomeKit a foreground app scene while the command runs; your main window stays closed.")
+                Text("Commands arriving together share one card. It disappears 1.5 seconds after the last command finishes, or after 3 seconds if a command fails. Status and accessory-list requests do not show a card.")
+                    .foregroundStyle(.secondary)
+            }
         }
         .formStyle(.grouped)
         .navigationTitle("Overview")
@@ -89,9 +96,9 @@ struct OverviewPage: View {
 
     private var backgroundOperationDescription: String {
         if model.isMenuBarItemEnabled {
-            "Closing the main window keeps the local API and menu bar item running. Use Quit from the menu bar item or the app menu to stop the bridge."
+            "Closing the main window keeps the local API and menu bar item running. Accessory commands show a small card at the top right, which disappears after completion. Use Quit to stop the bridge."
         } else {
-            "Closing the main window keeps the local API running. Use the Dock to reopen or quit the bridge."
+            "Closing the main window keeps the local API running. Accessory commands show a small card at the top right, which disappears after completion. Use the Dock to reopen or quit the bridge."
         }
     }
 

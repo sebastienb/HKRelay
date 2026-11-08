@@ -1,6 +1,7 @@
 import BridgeCore
 import BridgeServer
 import Foundation
+import OSLog
 
 @MainActor
 final class BridgeRouter {
@@ -8,6 +9,10 @@ final class BridgeRouter {
     private let history: RequestHistoryStore
     private var token: String
     private var loopbackOnly: Bool
+    private let logger = Logger(
+        subsystem: "org.homekitrestbridge.app",
+        category: "Router"
+    )
 
     init(
         homeKit: HomeKitRepository,
@@ -72,11 +77,21 @@ final class BridgeRouter {
             switch error.code {
             case "not_found", "camera_unsupported", "motion_unsupported": statusCode = 404
             case "access_denied", "read_denied", "write_denied": statusCode = 403
-            case "motion_unavailable": statusCode = 503
+            case "homekit_error": statusCode = 502
+            case "motion_unavailable", "window_required": statusCode = 503
             default: statusCode = 400
             }
+            if statusCode >= 500 {
+                logger.error("\(request.method, privacy: .public) \(path, privacy: .public) failed: \(error.code, privacy: .public) \(error.message, privacy: .public)")
+            }
             return .json(statusCode: statusCode, envelope: .failure(code: error.code, message: error.message))
+        } catch is DecodingError {
+            return .json(
+                statusCode: 400,
+                envelope: .failure(code: "invalid_body", message: "The request body is not valid JSON.")
+            )
         } catch {
+            logger.error("\(request.method, privacy: .public) \(path, privacy: .public) failed unexpectedly: \(String(describing: error), privacy: .public)")
             return .json(
                 statusCode: 500,
                 envelope: .failure(code: "internal_error", message: "The bridge could not complete the request.")

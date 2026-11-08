@@ -29,6 +29,9 @@ final class HomeKitRepository: NSObject, @preconcurrency HMHomeManagerDelegate {
     @ObservationIgnored private let policyStore = PolicyStore()
     @ObservationIgnored private var accessoryIndex: [String: HMAccessory] = [:]
     @ObservationIgnored private var characteristicIndex: [String: HMCharacteristic] = [:]
+    #if targetEnvironment(macCatalyst)
+    @ObservationIgnored private let windowPresence = WindowPresence.shared
+    #endif
 
     var isAuthorized: Bool {
         authorizationStatus.contains(.authorized)
@@ -128,7 +131,17 @@ final class HomeKitRepository: NSObject, @preconcurrency HMHomeManagerDelegate {
             throw APIError(code: "not_readable", message: "HomeKit reports that this characteristic is not readable.")
         }
 
-        try await characteristic.readValue()
+        try await performAccessoryOperation(
+            title: accessoryIndex[accessoryID]?.name ?? "Accessory",
+            detail: "Read \(characteristic.localizedDescription)"
+        ) {
+            try requireAuthorization()
+            guard policyStore.document.access(for: accessoryID, characteristicID: characteristicID).allowsRead,
+                  characteristicIndex[indexKey(accessoryID, characteristicID)] === characteristic else {
+                throw APIError(code: "read_denied", message: "Access changed while the read was pending.")
+            }
+            try await characteristic.readValue()
+        }
         try Task.checkCancellation()
         try requireAuthorization()
         guard policyStore.document.access(for: accessoryID, characteristicID: characteristicID).allowsRead,
@@ -162,7 +175,23 @@ final class HomeKitRepository: NSObject, @preconcurrency HMHomeManagerDelegate {
             throw APIError(code: "not_writable", message: "HomeKit reports that this characteristic is not writable.")
         }
 
-        try await characteristic.writeValue(value.foundationValue)
+        let detail: String
+        if characteristic.characteristicType == HMCharacteristicTypePowerState, case let .bool(on) = value {
+            detail = on ? "Turn on" : "Turn off"
+        } else {
+            detail = "Set \(characteristic.localizedDescription)"
+        }
+        try await performAccessoryOperation(
+            title: accessoryIndex[accessoryID]?.name ?? "Accessory",
+            detail: detail
+        ) {
+            try requireAuthorization()
+            guard policyStore.document.access(for: accessoryID, characteristicID: characteristicID).allowsWrite,
+                  characteristicIndex[indexKey(accessoryID, characteristicID)] === characteristic else {
+                throw APIError(code: "write_denied", message: "Access changed while the write was pending.")
+            }
+            try await characteristic.writeValue(value.foundationValue)
+        }
         return CharacteristicValue(
             accessoryID: accessoryID,
             characteristicID: characteristicID,
@@ -182,6 +211,32 @@ final class HomeKitRepository: NSObject, @preconcurrency HMHomeManagerDelegate {
             readings.append(reading)
         }
         return readings
+    }
+
+    /// Runs a HomeKit accessory read or write and translates HomeKit failures
+    /// into specific API errors instead of a generic 500.
+    private func performAccessoryOperation(title: String, detail: String, _ operation: () async throws -> Void) async throws {
+        #if targetEnvironment(macCatalyst)
+        let presentation = try await windowPresence.beginCommand(title: title, detail: detail)
+        var failed = true
+        defer { windowPresence.endCommand(presentation, failed: failed) }
+        #endif
+        try Task.checkCancellation()
+        do {
+            try await operation()
+            #if targetEnvironment(macCatalyst)
+            failed = false
+            #endif
+        } catch let error as HMError {
+            throw Self.apiError(for: error)
+        }
+    }
+
+    private static func apiError(for error: HMError) -> APIError {
+        APIError(
+            code: "homekit_error",
+            message: "HomeKit error \(error.code.rawValue): \(error.localizedDescription)"
+        )
     }
 
     private func requireAuthorization() throws {

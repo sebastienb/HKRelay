@@ -43,6 +43,10 @@ targets:
         # Catalyst single-scene apps quit when their last window closes.
         UIApplicationSceneManifest:
           UIApplicationSupportsMultipleScenes: true
+          UISceneConfigurations:
+            UIWindowSceneSessionRoleApplication:
+              - UISceneConfigurationName: HKRelay
+              - UISceneConfigurationName: HKRelay Command
         UILaunchScreen: {}
         UISupportedInterfaceOrientations:
           - UIInterfaceOrientationPortrait
@@ -75,7 +79,7 @@ targets:
         PRODUCT_NAME: HKRelay
         PRODUCT_BUNDLE_IDENTIFIER: $(HKBRIDGE_BUNDLE_IDENTIFIER)
         MARKETING_VERSION: 0.1.0
-        CURRENT_PROJECT_VERSION: 2
+        CURRENT_PROJECT_VERSION: 4
         SWIFT_VERSION: 6.0
         SUPPORTS_MACCATALYST: true
         TARGETED_DEVICE_FAMILY: "1,2"
@@ -118,7 +122,7 @@ targets:
         WRAPPER_NAME: HomeKit Bridge Menu.app
         PRODUCT_BUNDLE_IDENTIFIER: $(HKBRIDGE_BUNDLE_IDENTIFIER).menu
         MARKETING_VERSION: 0.1.0
-        CURRENT_PROJECT_VERSION: 2
+        CURRENT_PROJECT_VERSION: 4
         SWIFT_VERSION: 6.0
         GENERATE_INFOPLIST_FILE: false
         ENABLE_HARDENED_RUNTIME: true

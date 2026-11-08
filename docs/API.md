@@ -46,6 +46,16 @@ Failure:
 
 Clients should branch on `ok` and `error.code`, not on the human-readable message.
 
+HomeKit failures during a characteristic read or write are reported with their cause rather than as a generic `internal_error`:
+
+| Code | HTTP | Meaning |
+| --- | --- | --- |
+| `window_required` | 503 | HKRelay could not show its command card for HomeKit access within five seconds. Choose **Open HKRelay** from the menu bar and retry. |
+| `homekit_error` | 502 | HomeKit returned another error. The message includes the HomeKit error code and description, for example an unreachable accessory. |
+| `invalid_body` | 400 | The request body is not valid JSON or does not contain `value`. |
+
+When the main window is closed or minimized, accessory reads and writes show a transient command card at the top right. Concurrent requests share one card; it dismisses 1.5 seconds after the last request finishes (3 seconds for failures), leaving the main window closed. Authorization and accessory permissions are checked again after waiting for the card. Status and accessory discovery do not show a card. HomeKit failures remain `homekit_error`; a missing entitlement is not assumed to prove that a window is missing. Writes are never automatically replayed after a HomeKit failure.
+
 ## Endpoints
 
 ### `GET /health`

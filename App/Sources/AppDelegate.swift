@@ -17,4 +17,29 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         try? MenuBarHelperController.shared.stop()
     }
+
+    func application(
+        _ application: UIApplication,
+        configurationForConnecting connectingSceneSession: UISceneSession,
+        options: UIScene.ConnectionOptions
+    ) -> UISceneConfiguration {
+        #if targetEnvironment(macCatalyst)
+        if options.userActivities.contains(where: { $0.activityType == CommandSceneDelegate.activityType }) {
+            let configuration = UISceneConfiguration(
+                name: CommandSceneDelegate.configurationName,
+                sessionRole: connectingSceneSession.role
+            )
+            configuration.sceneClass = UIWindowScene.self
+            configuration.delegateClass = CommandSceneDelegate.self
+            return configuration
+        }
+        let configuration = UISceneConfiguration(name: "HKRelay", sessionRole: connectingSceneSession.role)
+        configuration.sceneClass = UIWindowScene.self
+        configuration.delegateClass = MainSceneDelegate.self
+        return configuration
+        #else
+        // Do not return SwiftUI's internal delegate as its own fallback delegate.
+        return UISceneConfiguration(name: nil, sessionRole: connectingSceneSession.role)
+        #endif
+    }
 }

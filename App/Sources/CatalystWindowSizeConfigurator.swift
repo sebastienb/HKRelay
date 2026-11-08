@@ -44,6 +44,10 @@ final class WindowConfigurationView: UIView {
     func applyRestrictions() {
         guard let restrictions = window?.windowScene?.sizeRestrictions else { return }
 
+        // API command activities belong to the transient scene, never the main window.
+        window?.windowScene?.activationConditions.canActivateForTargetContentIdentifierPredicate =
+            NSPredicate(format: "SELF != %@", CommandSceneDelegate.activityType)
+
         restrictions.minimumSize = minimumSize
         restrictions.maximumSize = CGSize(
             width: CGFloat.greatestFiniteMagnitude,
